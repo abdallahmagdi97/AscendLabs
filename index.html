@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ascend Labs — Creative Digital Growth Agency | Strategy, Design & Development</title>
+<meta name="description" content="Ascend Labs is a modern creative digital agency specializing in digital marketing, UI/UX design, web & mobile app development. We help businesses and enterprises build scalable digital experiences that drive measurable results.">
+<meta name="keywords" content="digital marketing agency, UI UX design, web development, mobile app development, branding, media buying, social media marketing, Cairo, Egypt, creative agency, digital growth">
+<meta name="author" content="Ascend Labs">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ascend-labs.cc/">
+<meta property="og:title" content="Ascend Labs — Creative Digital Growth Agency">
+<meta property="og:description" content="Strategy, Design & Development. We build digital ecosystems designed for growth — from startups to enterprises.">
+<meta property="og:url" content="https://ascend-labs.cc/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ascend Labs">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ascend Labs — Creative Digital Growth Agency">
+<meta name="twitter:description" content="Strategy, Design & Development. We build digital ecosystems designed for growth.">
+<meta name="theme-color" content="#0A0E1A">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ascend Labs",
+  "url": "https://ascend-labs.cc",
+  "logo": "https://ascend-labs.cc/logo.png",
+  "description": "Modern creative digital agency specializing in digital marketing, UI/UX design, web & mobile app development.",
+  "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
+  "telephone": "+201227710072",
+  "email": "info@ascendlabs.com",
+  "sameAs": [],
+  "serviceType": ["Digital Marketing", "UI/UX Design", "Web Development", "Mobile App Development", "Branding", "Media Buying"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root {
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #0F1525;
+  --surface: #141B2D;
+  --accent: #F5A623;
+  --accent-hover: #FFB84D;
+  --cyan: #00D4FF;
+  --text: #F0F4FF;
+  --text-muted: #7B8DB0;
+  --border: rgba(255,255,255,0.07);
+  --border-light: rgba(255,255,255,0.06);
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 18px 0;
+  transition: background 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: var(--bg-primary);
+  border-bottom-color: var(--accent);
+}
+.nav .container {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo svg { height: 36px; width: auto; }
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 22px; letter-spacing: 4px; line-height: 1;
+}
+.nav-logo-text .asc { color: var(--text); }
+.nav-logo-sub {
+  font-family: var(--font-display);
+  font-size: 11px; letter-spacing: 8px;
+  color: var(--text-muted);
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-logo-sub::before, .nav-logo-sub::after {
+  content: ''; display: block; width: 12px; height: 1px;
+  background: var(--text-muted);
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 14px; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent); color: var(--bg-primary);
+  padding: 10px 24px; border-radius: 50px;
+  font-size: 14px; font-weight: 700;
+  transition: background 0.15s, transform 0.15s;
+}
+.nav-cta:hover { background: var(--accent-hover); transform: scale(1.03); }
+.nav-cta:active { transform: scale(0.97); }
+
+.mobile-toggle {
+  display: none; background: none; border: none;
+  color: var(--text); font-size: 28px; cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; position: relative;
+  padding: 120px 24px 60px;
+}
+.hero::before {
+  content: ''; position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -55%);
+  pointer-events: none;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: radial-gradient(circle, var(--text-muted) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 10vw, 110px);
+  line-height: 0.95; letter-spacing: 2px;
+  position: relative;
+}
+.hero h1 .line { display: block; }
+.hero-sub {
+  font-size: 18px; color: var(--text-muted);
+  max-width: 520px; margin: 28px auto 0;
+  line-height: 1.7;
+}
+.hero-ctas {
+  display: flex; gap: 16px; margin-top: 36px;
+  flex-wrap: wrap; justify-content: center;
+}
+.btn-primary {
+  background: var(--accent); color: var(--bg-primary);
+  padding: 16px 40px; border-radius: 50px;
+  font-size: 16px; font-weight: 700;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: scale(1.03); }
+.btn-primary:active { transform: scale(0.97); }
+.btn-ghost {
+  background: transparent; color: var(--text);
+  padding: 16px 40px; border-radius: 50px;
+  font-size: 16px; font-weight: 500;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, transform 0.15s;
+}
+.btn-ghost:hover { border-color: var(--text-muted); transform: scale(1.03); }
+.btn-ghost:active { transform: scale(0.97); }
+.trust-bar {
+  font-family: var(--font-mono);
+  font-size: 12px; color: var(--text-muted);
+  margin-top: 32px; letter-spacing: 0.5px;
+}
+
+/* MARQUEE */
+.marquee-strip {
+  background: var(--bg-secondary);
+  padding: 14px 0; overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+  font-family: var(--font-display);
+  font-size: 18px; color: var(--accent);
+  letter-spacing: 3px;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* MANIFESTO */
+.manifesto {
+  padding: 100px 24px;
+  text-align: center;
+}
+.manifesto-rule {
+  width: 60px; height: 2px;
+  background: var(--accent); margin: 0 auto 40px;
+}
+.manifesto h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05; letter-spacing: 2px;
+}
+.manifesto p {
+  font-size: 16px; color: var(--text-muted);
+  margin-top: 20px; max-width: 540px;
+  margin-left: auto; margin-right: auto;
+  line-height: 1.7;
+}
+.manifesto-rule-bottom {
+  width: 60px; height: 2px;
+  background: var(--accent); margin: 40px auto 0;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+/* SERVICES */
+.services { padding: 100px 24px; }
+.services h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05; margin-bottom: 48px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 32px;
+  border-left: 3px solid transparent;
+  transition: transform 0.3s, border-left-color 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  border-left-color: var(--cyan);
+  box-shadow: 0 8px 32px rgba(0,212,255,0.06);
+}
+.service-card i {
+  font-size: 24px; color: var(--accent);
+  margin-bottom: 16px; display: block;
+}
+.service-card h3 {
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 8px;
+}
+.service-card p {
+  font-size: 14px; color: var(--text-muted);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.service-tag {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--accent);
+  background: rgba(245,166,35,0.10);
+  padding: 4px 10px; border-radius: 4px;
+}
+
+/* COMPARISON */
+.comparison { padding: 100px 24px; }
+.comparison h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05; margin-bottom: 48px;
+}
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.comp-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 36px;
+}
+.comp-card.ascend {
+  border-color: rgba(245,166,35,0.25);
+  box-shadow: 0 0 40px rgba(245,166,35,0.06);
+}
+.comp-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px; margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+.comp-card.others h3 { color: var(--text-muted); }
+.comp-card.ascend h3 { color: var(--accent); }
+.comp-card ul { list-style: none; }
+.comp-card li {
+  font-size: 15px; color: var(--text-muted);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.comp-card li:last-child { border-bottom: none; }
+.comp-card.others li::before {
+  content: '✕'; color: #E05252;
+  font-weight: 700; font-size: 14px;
+  flex-shrink: 0; margin-top: 1px;
+}
+.comp-card.ascend li::before {
+  content: '✓'; color: var(--accent);
+  font-weight: 700; font-size: 14px;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* PORTFOLIO */
+.portfolio { padding: 100px 24px; }
+.portfolio h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05; margin-bottom: 32px;
+}
+.filter-tabs {
+  display: flex; gap: 12px; margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.filter-tab {
+  font-family: var(--font-body);
+  font-size: 14px; padding: 8px 20px;
+  border-radius: 50px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted);
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-tab.active, .filter-tab:hover {
+  background: var(--accent); color: var(--bg-primary);
+  border-color: var(--accent);
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.portfolio-card {
+  border-radius: 12px; overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.portfolio-img {
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px; letter-spacing: 2px;
+  color: rgba(240,244,255,0.15);
+}
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: rgba(245,166,35,0.85);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.25s;
+  font-weight: 700; font-size: 15px; color: var(--bg-primary);
+}
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+.portfolio-info { padding: 16px 0; }
+.portfolio-badge {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--accent);
+  background: rgba(245,166,35,0.10);
+  padding: 3px 10px; border-radius: 4px;
+  display: inline-block; margin-bottom: 8px;
+}
+.portfolio-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.portfolio-info p { font-size: 13px; color: var(--text-muted); }
+
+/* PROCESS */
+.process { padding: 100px 24px; }
+.process h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05; margin-bottom: 40px;
+}
+.code-block {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 32px;
+  margin-bottom: 48px; overflow-x: auto;
+  position: relative;
+}
+.code-block::before {
+  content: ''; position: absolute; top: 16px; left: 16px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #E05252;
+  box-shadow: 18px 0 0 #F5A623, 36px 0 0 #4ADE80;
+}
+.code-block pre {
+  font-family: var(--font-mono);
+  font-size: 14px; line-height: 1.8;
+  color: var(--text-muted);
+  padding-top: 20px;
+}
+.code-block .key { color: var(--cyan); }
+.code-block .str { color: var(--accent); }
+.code-block .bool { color: #4ADE80; }
+.code-block .punct { color: var(--text-muted); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+.step-card {
+  padding: 28px; border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+}
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 32px; color: var(--accent);
+  font-weight: 700; margin-bottom: 12px;
+}
+.step-card h3 {
+  font-size: 17px; font-weight: 700;
+  margin-bottom: 10px;
+}
+.step-card p {
+  font-size: 14px; color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* STATS */
+.stats-strip {
+  background: var(--bg-secondary);
+  padding: 64px 24px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px; text-align: center;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 72px);
+  color: var(--accent);
+}
+.stat-num .symbol {
+  font-family: var(--font-mono);
+}
+.stat-label {
+  font-size: 13px; color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* TESTIMONIALS */
+.testimonials { padding: 100px 24px; }
+.testimonials h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05; margin-bottom: 48px;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.test-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px; padding: 32px;
+}
+.test-quote-mark {
+  font-family: var(--font-display);
+  font-size: 80px; color: var(--accent);
+  line-height: 0.6; margin-bottom: 12px;
+}
+.test-card blockquote {
+  font-size: 15px; line-height: 1.7;
+  margin-bottom: 24px;
+}
+.test-author {
+  display: flex; align-items: center; gap: 12px;
+}
+.test-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--accent); color: var(--bg-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+}
+.test-name { font-size: 14px; font-weight: 700; }
+.test-title { font-size: 13px; color: var(--text-muted); }
+
+/* CONTACT */
+.contact { padding: 100px 24px; }
+.contact h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05; margin-bottom: 12px;
+}
+.contact > .container > p {
+  font-size: 16px; color: var(--text-muted);
+  max-width: 520px; line-height: 1.7;
+  margin-bottom: 48px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 14px; color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--accent);
+}
+.contact-form select { appearance: auto; }
+.contact-form textarea { resize: vertical; min-height: 100px; }
+.contact-form button {
+  background: var(--accent); color: var(--bg-primary);
+  padding: 16px; border-radius: 8px;
+  font-size: 16px; font-weight: 700;
+  transition: background 0.15s, transform 0.15s;
+}
+.contact-form button:hover { background: var(--accent-hover); transform: scale(1.03); }
+.contact-form button:active { transform: scale(0.97); }
+
+.contact-info { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+.contact-link {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 15px; color: var(--text);
+}
+.contact-link i { font-size: 20px; color: var(--accent); }
+.contact-link.whatsapp {
+  background: rgba(37,211,102,0.12);
+  padding: 14px 20px; border-radius: 8px;
+  color: #25D366; font-weight: 700;
+}
+.contact-link.whatsapp i { color: #25D366; }
+.contact-closer {
+  font-family: var(--font-mono);
+  font-size: 12px; color: var(--text-muted);
+  margin-top: 8px;
+}
+.contact-philosophy {
+  font-size: 14px; color: var(--accent);
+  font-style: italic; margin-top: 8px;
+}
+
+/* FOOTER */
+.footer {
+  padding: 48px 24px 0;
+  border-top: 1px solid var(--border);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px; align-items: start;
+  padding-bottom: 32px;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 28px; letter-spacing: 2px;
+}
+.footer-logo .asc { color: var(--accent); }
+.footer-logo .labs { color: var(--text); }
+.footer-tagline {
+  font-size: 14px; color: var(--text-muted);
+  margin-top: 6px; font-style: italic;
+}
+.footer-nav {
+  display: flex; gap: 24px; justify-content: center;
+  align-items: center;
+}
+.footer-nav a {
+  font-size: 14px; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--text); }
+.footer-social {
+  display: flex; gap: 16px; justify-content: flex-end;
+}
+.footer-social a {
+  font-size: 20px; color: var(--text);
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--accent); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0;
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--text-muted);
+}
+.footer-bottom .right {
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* CLIENTS */
+.clients-strip {
+  padding: 80px 24px;
+  background: var(--bg-secondary);
+}
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  align-items: center;
+  margin-top: 32px;
+}
+.client-logo {
+  font-family: var(--font-display);
+  font-size: 18px; letter-spacing: 2px;
+  color: var(--text);
+  text-align: center;
+  padding: 24px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.client-logo:hover { opacity: 1; }
+
+/* SCROLL ANIMATIONS */
+.fade-up {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 60px; left: 0; right: 0;
+    background: var(--bg-primary);
+    padding: 24px;
+    border-bottom: 1px solid var(--accent);
+    gap: 20px;
+  }
+  .services-grid,
+  .comparison-grid,
+  .contact-grid { grid-template-columns: 1fr; }
+  .clients-grid { grid-template-columns: repeat(3, 1fr); }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-nav, .footer-social { justify-content: center; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+@media (max-width: 480px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .hero h1 { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-logo">
+      <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5 L5 115" stroke="#F0F4FF" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M50 5 L95 115" stroke="#F0F4FF" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M57.4 2 L102.4 112" stroke="#F0F4FF" stroke-width="2.8" stroke-linecap="round"/>
+        <line x1="56.75" y1="21.5" x2="64.15" y2="18.5" stroke="#F0F4FF" stroke-width="2"/>
+        <line x1="62.6" y1="35.8" x2="70.0" y2="32.8" stroke="#F0F4FF" stroke-width="2"/>
+        <line x1="68.45" y1="50.1" x2="75.85" y2="47.1" stroke="#F0F4FF" stroke-width="2"/>
+        <line x1="74.3" y1="64.4" x2="81.7" y2="61.4" stroke="#F0F4FF" stroke-width="2"/>
+        <line x1="80.15" y1="78.7" x2="87.55" y2="75.7" stroke="#F0F4FF" stroke-width="2"/>
+        <line x1="86.0" y1="93.0" x2="93.4" y2="90.0" stroke="#F0F4FF" stroke-width="2"/>
+        <line x1="90.5" y1="104.0" x2="97.9" y2="101.0" stroke="#F0F4FF" stroke-width="2"/>
+      </svg>
+      <div>
+        <div class="nav-logo-text"><span class="asc">ASCEND</span></div>
+        <div class="nav-logo-sub">LABS</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Start a Campaign →</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <i class="ti ti-menu-2"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+  <h1>
+    <span class="line fade-up">SOME BRANDS</span>
+    <span class="line fade-up">FOLLOW TRENDS.</span>
+    <span class="line fade-up">WE BUILD</span>
+    <span class="line fade-up">MOMENTUM.</span>
+  </h1>
+  <p class="hero-sub fade-up">Ascend Labs is a modern creative digital agency specializing in digital marketing, website experiences, and mobile application solutions. From startups to enterprises — we combine strategy, creativity, and technology to accelerate growth.</p>
+  <div class="hero-ctas fade-up">
+    <a href="#contact" class="btn-primary">Start Your Project →</a>
+    <a href="#work" class="btn-ghost">See Our Work</a>
+  </div>
+  <p class="trust-bar fade-up">Full-service agency &nbsp;·&nbsp; Startups to Enterprises &nbsp;·&nbsp; Strategy-first &nbsp;·&nbsp; Measurable results</p>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    Digital Marketing &nbsp; · &nbsp; UI/UX Design &nbsp; · &nbsp; Web Development &nbsp; · &nbsp; Mobile Apps &nbsp; · &nbsp; Branding &nbsp; · &nbsp; Media Buying &nbsp; · &nbsp; Photography &nbsp; · &nbsp; Strategy &nbsp; · &nbsp;
+    Digital Marketing &nbsp; · &nbsp; UI/UX Design &nbsp; · &nbsp; Web Development &nbsp; · &nbsp; Mobile Apps &nbsp; · &nbsp; Branding &nbsp; · &nbsp; Media Buying &nbsp; · &nbsp; Photography &nbsp; · &nbsp; Strategy &nbsp; · &nbsp;
+    Digital Marketing &nbsp; · &nbsp; UI/UX Design &nbsp; · &nbsp; Web Development &nbsp; · &nbsp; Mobile Apps &nbsp; · &nbsp; Branding &nbsp; · &nbsp; Media Buying &nbsp; · &nbsp; Photography &nbsp; · &nbsp; Strategy &nbsp; · &nbsp;
+    Digital Marketing &nbsp; · &nbsp; UI/UX Design &nbsp; · &nbsp; Web Development &nbsp; · &nbsp; Mobile Apps &nbsp; · &nbsp; Branding &nbsp; · &nbsp; Media Buying &nbsp; · &nbsp; Photography &nbsp; · &nbsp; Strategy &nbsp; · &nbsp;
+  </div>
+</div>
+
+<!-- MANIFESTO 1 -->
+<section class="manifesto">
+  <div class="manifesto-rule"></div>
+  <h2 class="fade-up">GROWTH ISN'T RANDOM.<br>EVERY BREAKTHROUGH STARTS<br>WITH A DIRECTION.</h2>
+  <p class="fade-up">Every direction starts with a vision. Ours is to make yours undeniable.</p>
+  <div class="manifesto-rule-bottom"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label fade-up">01 — WHAT WE DO</div>
+    <h2 class="fade-up">EVERY TOUCHPOINT.<br>ONE CREATIVE LAB.</h2>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <i class="ti ti-speakerphone"></i>
+        <h3>Digital Marketing</h3>
+        <p>Full-spectrum digital marketing — from social media strategy to paid advertising and performance campaigns that drive real growth.</p>
+        <div class="service-tags">
+          <span class="service-tag">Social Media</span>
+          <span class="service-tag">Content Strategy</span>
+          <span class="service-tag">Paid Ads</span>
+          <span class="service-tag">Performance</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <i class="ti ti-palette"></i>
+        <h3>Design</h3>
+        <p>From UI/UX to full brand identity systems — we create visual experiences that are modern, intuitive, and built to convert.</p>
+        <div class="service-tags">
+          <span class="service-tag">UI/UX</span>
+          <span class="service-tag">Website Design</span>
+          <span class="service-tag">Mobile App Design</span>
+          <span class="service-tag">Brand Identity</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <i class="ti ti-code"></i>
+        <h3>Development</h3>
+        <p>Scalable websites, landing pages, mobile applications, and custom digital solutions — engineered for performance.</p>
+        <div class="service-tags">
+          <span class="service-tag">Websites</span>
+          <span class="service-tag">Mobile Apps</span>
+          <span class="service-tag">Landing Pages</span>
+          <span class="service-tag">Custom Solutions</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <i class="ti ti-camera"></i>
+        <h3>Photography & Videography</h3>
+        <p>Content-ready photography, videography, and art direction for products, campaigns, and brand storytelling.</p>
+        <div class="service-tags">
+          <span class="service-tag">Product Shoots</span>
+          <span class="service-tag">Campaign</span>
+          <span class="service-tag">Video Production</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <i class="ti ti-chess"></i>
+        <h3>Strategy & Consulting</h3>
+        <p>Data-backed marketing strategy tailored to your audience, goals, and budget. We map the path before we run it.</p>
+        <div class="service-tags">
+          <span class="service-tag">Market Research</span>
+          <span class="service-tag">Funnel Design</span>
+          <span class="service-tag">KPIs</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <i class="ti ti-antenna"></i>
+        <h3>Media Buying</h3>
+        <p>Paid media that actually performs. We run, optimize, and report on Meta, Google, TikTok, and beyond.</p>
+        <div class="service-tags">
+          <span class="service-tag">Meta Ads</span>
+          <span class="service-tag">Google Ads</span>
+          <span class="service-tag">TikTok</span>
+          <span class="service-tag">DOOH</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO 2 -->
+<section class="manifesto">
+  <div class="manifesto-rule"></div>
+  <h2 class="fade-up">BEHIND EVERY SUCCESSFUL BRAND,<br>THERE'S A DECISION NOBODY SEES.</h2>
+  <p class="fade-up">The decision to stop blending in.<br>The decision to build differently.<br>That decision starts here.</p>
+  <div class="manifesto-rule-bottom"></div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison" id="difference">
+  <div class="container">
+    <div class="section-label fade-up">02 — THE DIFFERENCE</div>
+    <h2 class="fade-up">NOT AN AGENCY.<br>A GROWTH LAB.</h2>
+    <div class="comparison-grid">
+      <div class="comp-card others fade-up">
+        <h3>OTHERS</h3>
+        <ul>
+          <li>Siloed teams with no coordination</li>
+          <li>Vanity metrics, zero ROI accountability</li>
+          <li>Generic templates and stock visuals</li>
+          <li>Slow turnarounds buried in project tickets</li>
+          <li>You adapt to their rigid process</li>
+        </ul>
+      </div>
+      <div class="comp-card ascend fade-up">
+        <h3>ASCEND LABS</h3>
+        <ul>
+          <li>Strategic thinking with creative execution</li>
+          <li>User-centered design, performance-driven marketing</li>
+          <li>Scalable development solutions</li>
+          <li>Modern digital innovation across every touchpoint</li>
+          <li>We build digital ecosystems designed for growth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="work">
+  <div class="container">
+    <div class="section-label fade-up">03 — RESULTS</div>
+    <h2 class="fade-up">CAMPAIGNS THAT<br>MOVED THE NEEDLE.</h2>
+    <div class="filter-tabs fade-up">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="branding">Branding</button>
+      <button class="filter-tab" data-filter="mobile">Mobile App</button>
+      <button class="filter-tab" data-filter="social">Social Media</button>
+      <button class="filter-tab" data-filter="campaigns">Campaigns</button>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card fade-up" data-cat="branding">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#1a0a0a,#2D1414)">BEIT EL MODA</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Branding</span>
+          <h3>Beit El Moda</h3>
+          <p>Full brand identity & packaging</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up" data-cat="campaigns social">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#141B2D,#1F2B42)">SHAZAM</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Marketing + Social</span>
+          <h3>Shazam Real Estate</h3>
+          <p>Social media & paid campaigns</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up" data-cat="branding social">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#0F1525,#192238)">EVORA</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Branding + Social</span>
+          <h3>Evora</h3>
+          <p>Brand identity & digital presence</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up" data-cat="social campaigns">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#141B2D,#1C2940)">LA POTTERIA</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Social Media</span>
+          <h3>La Potteria</h3>
+          <p>Content strategy & social management</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up" data-cat="mobile campaigns">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#0F1525,#1A2540)">QUICK OUT</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Mobile App + Marketing</span>
+          <h3>Quick Out</h3>
+          <p>App design & digital campaign</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up" data-cat="campaigns branding">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#141B2D,#1E2A40)">AL SAHM AL THAHABI</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Branding + Marketing</span>
+          <h3>Al Sahm Al Thahabi</h3>
+          <p>Financial services branding & digital</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-label fade-up">04 — HOW WE WORK</div>
+    <h2 class="fade-up">STRATEGY. CREATE.<br>LAUNCH. SCALE.</h2>
+    <div class="code-block fade-up">
+      <pre><span class="key">export const</span> <span class="punct">ascendWorkflow</span> <span class="key">=</span> <span class="punct">{</span>
+  <span class="key">approach</span><span class="punct">:</span>   <span class="str">"strategy-first"</span><span class="punct">,</span>
+  <span class="key">creative</span><span class="punct">:</span>   <span class="str">"custom-only"</span><span class="punct">,</span>
+  <span class="key">reporting</span><span class="punct">:</span>  <span class="str">"transparent"</span><span class="punct">,</span>
+  <span class="key">ownership</span><span class="punct">:</span>  <span class="str">"client-side"</span><span class="punct">,</span>
+  <span class="key">surprises</span><span class="punct">:</span>  <span class="bool">false</span><span class="punct">,</span>
+  <span class="key">direction</span><span class="punct">:</span>  <span class="str">"always up"</span>
+<span class="punct">};</span></pre>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">01</div>
+        <h3>Discover</h3>
+        <p>Understanding your business, audience, and goals. Every brief is treated as a new problem to solve.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">02</div>
+        <h3>Strategy</h3>
+        <p>Building the roadmap for growth and digital success — data-backed, goal-driven, budget-aware.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">03</div>
+        <h3>Design</h3>
+        <p>Creating modern, intuitive, high-performing experiences — reviewed and approved before production.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">04</div>
+        <h3>Develop</h3>
+        <p>Transforming concepts into scalable digital products — websites, apps, and custom solutions.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">05</div>
+        <h3>Launch & Optimize</h3>
+        <p>Testing, improving, and driving continuous growth. We go live, track everything, and optimize.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="fade-up">
+        <div class="stat-num"><span class="counter" data-target="3">0</span><span class="symbol">+</span></div>
+        <div class="stat-label">Brands Supported</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num"><span class="counter" data-target="25">0</span><span class="symbol">+</span></div>
+        <div class="stat-label">Successful Campaigns</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num"><span class="counter" data-target="50">0</span><span class="symbol">+</span></div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num"><span class="counter" data-target="3">0</span></div>
+        <div class="stat-label">Core Pillars</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-strip" id="clients">
+  <div class="container">
+    <div class="section-label fade-up" style="text-align:center">TRUSTED BY BRANDS</div>
+    <div class="clients-grid fade-up">
+      <div class="client-logo">SHAZAM<span style="display:block;font-size:10px;letter-spacing:1px;color:var(--text-muted)">REAL ESTATE</span></div>
+      <div class="client-logo">evora</div>
+      <div class="client-logo">LA POTTERIA</div>
+      <div class="client-logo">BEIT EL MODA</div>
+      <div class="client-logo">QUICK OUT</div>
+      <div class="client-logo">AL SAHM<span style="display:block;font-size:10px;letter-spacing:1px;color:var(--text-muted)">AL THAHABI</span></div>
+    </div>
+    <p class="fade-up" style="text-align:center;font-size:14px;color:var(--text-muted);margin-top:32px;">We proudly collaborate with ambitious businesses across multiple industries — from emerging startups to established enterprises — helping them elevate their digital presence and market impact.</p>
+  </div>
+</section>
+
+<!-- MANIFESTO 3 -->
+<section class="manifesto">
+  <div class="manifesto-rule"></div>
+  <h2>
+    <span class="fade-up" style="display:block">ATTENTION IS EARNED.</span>
+    <span class="fade-up" style="display:block">PRESENCE IS DESIGNED.</span>
+    <span class="fade-up" style="display:block">INFLUENCE IS BUILT.</span>
+  </h2>
+  <p class="fade-up">This is what we do at Ascend Labs. Every service. Every campaign. Every brand.</p>
+  <div class="manifesto-rule-bottom"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-label fade-up">05 — CLIENTS</div>
+    <h2 class="fade-up">WHAT OUR<br>PARTNERS SAY.</h2>
+    <div class="testimonials-grid">
+      <div class="test-card fade-up">
+        <div class="test-quote-mark">"</div>
+        <blockquote>Ascend Labs didn't just design our brand — they made us feel like a real company. Inquiries tripled within two months of launch.</blockquote>
+        <div class="test-author">
+          <div class="test-avatar">SM</div>
+          <div>
+            <div class="test-name">Sara M.</div>
+            <div class="test-title">Founder, Cairo Roots Café</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card fade-up">
+        <div class="test-quote-mark">"</div>
+        <blockquote>Their media buying team cut our CPL in half in the first campaign. They're the only agency I've worked with that speaks both creative and performance.</blockquote>
+        <div class="test-author">
+          <div class="test-avatar">KH</div>
+          <div>
+            <div class="test-name">Karim H.</div>
+            <div class="test-title">CMO, TechNova</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card fade-up">
+        <div class="test-quote-mark">"</div>
+        <blockquote>From strategy to photoshoot to website — all in one place. The coordination alone was worth every pound.</blockquote>
+        <div class="test-author">
+          <div class="test-avatar">DF</div>
+          <div>
+            <div class="test-name">Dina F.</div>
+            <div class="test-title">Co-founder, Luxe Living</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label fade-up">06 — GET STARTED</div>
+    <h2 class="fade-up">LET'S BUILD SOMETHING<br>THAT LASTS.</h2>
+    <p class="fade-up">Tell us about your project. We'll come back with a clear scope, a realistic timeline, and a plan built around your goals — not ours.</p>
+    <div class="contact-grid">
+      <form class="contact-form fade-up" id="contactForm">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Company">
+        <select required>
+          <option value="" disabled selected>Service of interest</option>
+          <option>Digital Marketing</option>
+          <option>UI/UX Design</option>
+          <option>Brand Identity</option>
+          <option>Website Development</option>
+          <option>Mobile App Development</option>
+          <option>Media Buying</option>
+          <option>Photography & Video</option>
+          <option>Full Package</option>
+        </select>
+        <textarea placeholder="Your brief" rows="4"></textarea>
+        <button type="submit">Send My Brief →</button>
+      </form>
+      <div class="contact-info fade-up">
+        <a class="contact-link whatsapp" href="https://wa.me/201227710072?text=Hi%20Ascend%20Labs%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank">
+          <i class="ti ti-brand-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a class="contact-link" href="tel:+201227710072">
+          <i class="ti ti-phone"></i> +20 122 771 0072
+        </a>
+        <a class="contact-link" href="mailto:info@ascendlabs.com">
+          <i class="ti ti-mail"></i> info@ascendlabs.com
+        </a>
+        <a class="contact-link" href="https://ascend-labs.cc" target="_blank">
+          <i class="ti ti-world"></i> ascend-labs.cc
+        </a>
+        <div class="contact-link">
+          <i class="ti ti-map-pin"></i> Cairo, Egypt
+        </div>
+        <div class="contact-closer">"We respond within 24 hours."</div>
+        <div class="contact-philosophy">"Something is ascending. Is it your brand?"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="justify-content:flex-start">
+          <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px">
+            <path d="M60 4 L10 130" stroke="#F0F4FF" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M60 4 L110 130" stroke="#F0F4FF" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="72" y1="30" x2="98" y2="30" stroke="#F0F4FF" stroke-width="2.5"/>
+            <line x1="74" y1="44" x2="100" y2="44" stroke="#F0F4FF" stroke-width="2.5"/>
+            <line x1="76" y1="58" x2="102" y2="58" stroke="#F0F4FF" stroke-width="2.5"/>
+            <line x1="78" y1="72" x2="104" y2="72" stroke="#F0F4FF" stroke-width="2.5"/>
+            <line x1="80" y1="86" x2="106" y2="86" stroke="#F0F4FF" stroke-width="2.5"/>
+            <line x1="82" y1="100" x2="108" y2="100" stroke="#F0F4FF" stroke-width="2.5"/>
+            <line x1="84" y1="114" x2="110" y2="114" stroke="#F0F4FF" stroke-width="2.5"/>
+          </svg>
+          <div>
+            <div class="nav-logo-text"><span class="asc">ASCEND</span></div>
+            <div class="nav-logo-sub">LABS</div>
+          </div>
+        </div>
+        <div class="footer-tagline">Brands That Rise.</div>
+      </div>
+      <div class="footer-nav">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+        <a href="#" aria-label="Behance"><i class="ti ti-brand-behance"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ascend Labs. All rights reserved.</span>
+      <span class="right">Strategy-first. Creative-led. Results-driven.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu
+document.getElementById('mobileToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Intersection Observer for fade-up
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const delay = el.dataset.delay || 0;
+      setTimeout(() => el.classList.add('visible'), delay);
+      observer.unobserve(el);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  const parent = el.parentElement;
+  const siblings = Array.from(parent.children).filter(c => c.classList.contains('fade-up'));
+  const idx = siblings.indexOf(el);
+  if (idx > 0) el.dataset.delay = idx * 80;
+  observer.observe(el);
+});
+
+// Counter animation
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = el.dataset.decimal === 'true';
+      const duration = 1500;
+      const start = performance.now();
+      const animate = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = eased * target;
+        el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// Portfolio filter
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      if (filter === 'all' || card.dataset.cat.includes(filter)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Contact form
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  const inputs = this.querySelectorAll('input, select, textarea');
+  let valid = true;
+  inputs.forEach(input => {
+    if (input.required && !input.value.trim()) { valid = false; input.style.borderColor = '#E05252'; }
+    else { input.style.borderColor = ''; }
+  });
+  if (!valid) return;
+  const name = this.querySelector('input[type="text"]').value;
+  const email = this.querySelector('input[type="email"]').value;
+  const company = this.querySelectorAll('input[type="text"]')[1].value;
+  const service = this.querySelector('select').value;
+  const brief = this.querySelector('textarea').value;
+  const subject = encodeURIComponent('New Project Inquiry from ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + company + '\nService: ' + service + '\n\nBrief:\n' + brief
+  );
+  window.location.href = 'mailto:info@ascendlabs.com?subject=' + subject + '&body=' + body;
+  btn.textContent = 'Brief Sent ✓';
+  btn.style.background = '#4ADE80';
+  setTimeout(() => {
+    btn.textContent = 'Send My Brief →';
+    btn.style.background = '';
+    this.reset();
+  }, 3000);
+});
+</script>
+</body>
+</html>
