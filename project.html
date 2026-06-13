@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — Ascend Labs</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ascend-labs.cc/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+@font-face { font-family:'Switzer'; src:url('https://cdn.jsdelivr.net/gh/niccolodiasmo/Switzer-Font@main/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+@font-face { font-family:'Switzer'; src:url('https://cdn.jsdelivr.net/gh/niccolodiasmo/Switzer-Font@main/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+@font-face { font-family:'Switzer'; src:url('https://cdn.jsdelivr.net/gh/niccolodiasmo/Switzer-Font@main/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+
+:root {
+  --blue:#0259de; --blue-light:#3a7ff0; --black:#000; --white:#FFF;
+  --bg:#000; --surface:#111; --text:#FFF; --text-muted:#888;
+  --border:rgba(255,255,255,0.08);
+  --font-main:'Switzer','DM Sans',sans-serif;
+  --font-mono:'Space Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-main);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 24px}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;background:rgba(0,0,0,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--blue)}
+.nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:36px;width:auto;filter:brightness(0) invert(1)}
+.nav-back{font-size:14px;font-weight:500;color:var(--text-muted);display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.nav-back:hover{color:var(--white)}
+
+.project-hero{padding:120px 24px 60px;text-align:center}
+.project-badge{font-family:var(--font-mono);font-size:11px;color:var(--blue);background:rgba(2,89,222,0.1);padding:5px 14px;border-radius:6px;display:inline-block;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.project-hero h1{font-size:clamp(32px,5vw,52px);font-weight:700;line-height:1.1;margin-bottom:16px}
+.project-hero p{font-size:17px;color:var(--text-muted);max-width:600px;margin:0 auto;line-height:1.7}
+
+.project-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px 24px;max-width:900px;margin:0 auto}
+.meta-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.meta-label{font-family:var(--font-mono);font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.meta-value{font-size:15px;font-weight:500}
+
+.project-section{padding:60px 24px}
+.project-section h2{font-size:28px;font-weight:700;margin-bottom:20px}
+.project-section p{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.project-section ul{list-style:none;margin-top:12px}
+.project-section li{font-size:15px;color:var(--text-muted);padding:8px 0;display:flex;align-items:center;gap:10px}
+.project-section li::before{content:'→';color:var(--blue);font-weight:700}
+
+.project-cta{text-align:center;padding:60px 24px 80px}
+.project-cta h2{font-size:32px;font-weight:700;margin-bottom:12px}
+.project-cta p{color:var(--text-muted);margin-bottom:28px}
+.btn-primary{background:var(--blue);color:var(--white);padding:16px 40px;border-radius:10px;font-size:16px;font-weight:700;display:inline-block;transition:background 0.15s,transform 0.15s}
+.btn-primary:hover{background:var(--blue-light);transform:scale(1.03)}
+.btn-behance{background:var(--surface);color:var(--white);padding:14px 32px;border-radius:10px;font-size:15px;font-weight:500;display:inline-block;border:1px solid var(--border);margin-left:12px;transition:border-color 0.2s}
+.btn-behance:hover{border-color:var(--blue)}
+
+.footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:12px;color:var(--text-muted)}
+
+@media(max-width:768px){
+  .project-meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Ascend Labs"></a>
+    <a href="index.html#work" class="nav-back"><i class="ti ti-arrow-left"></i> Back to Work</a>
+  </div>
+</nav>
+
+<section class="project-hero">
+  <span class="project-badge" id="pBadge"></span>
+  <h1 id="pTitle"></h1>
+  <p id="pSubtitle"></p>
+</section>
+
+<div class="project-meta" id="pMeta"></div>
+
+<div class="container">
+  <section class="project-section" id="pAbout"></section>
+  <section class="project-section" id="pDeliverables"></section>
+</div>
+
+<section class="project-cta">
+  <h2>Want results like this?</h2>
+  <p>Let's talk about your project and build something that lasts.</p>
+  <a href="index.html#contact" class="btn-primary">Start Your Project →</a>
+  <a href="" class="btn-behance" id="pBehance" target="_blank">View on Behance →</a>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Ascend Labs. All rights reserved.</p>
+</footer>
+
+<script>
+const projects = {
+  'logo-brand-identity': {
+    title: 'Logo Design & Brand Identity',
+    badge: 'Logo Design + Brand Identity',
+    subtitle: 'Distinctive logos and complete brand identity systems that capture the essence of every brand — scalable, versatile, and built to last.',
+    behance: 'https://www.behance.net/gallery/206862839/Logo-Design-Brand-Identity',
+    meta: [
+      { label: 'Category', value: 'Brand Identity & Logo Design' },
+      { label: 'Tools', value: 'Adobe Illustrator · Photoshop' },
+      { label: 'Year', value: '2024' }
+    ],
+    about: '<h2>About This Project</h2><p>A comprehensive collection of logo designs and brand identity systems created for clients across diverse industries. Each identity was built from the ground up — starting with market research and brand strategy, then moving through concept development, refinement, and full guideline documentation.</p><p>Every logo is designed to be more than a mark. It\'s a complete visual language — with color systems, typography pairings, and application guidelines that ensure consistency across every touchpoint.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Primary and secondary logo variations</li><li>Complete color palette with hex, RGB, and CMYK values</li><li>Typography system and pairing guidelines</li><li>Brand guidelines document</li><li>Social media templates and applications</li><li>Stationery and collateral mockups</li></ul>'
+  },
+  'logo-design': {
+    title: 'Logo Design Collection',
+    badge: 'Logo Design',
+    subtitle: 'Logo redesign for semi-formal fashion wear — modern, minimal, and crafted for a refined brand presence.',
+    behance: 'https://www.behance.net/gallery/244136271/Logo-Design',
+    meta: [
+      { label: 'Category', value: 'Logo Redesign' },
+      { label: 'Tools', value: 'Adobe Illustrator · Photoshop' },
+      { label: 'Year', value: '2026' }
+    ],
+    about: '<h2>About This Project</h2><p>A logo redesign project for a semi-formal fashion wear brand. The goal was to create a mark that communicates sophistication, modernity, and timeless style — without being overly formal or rigid.</p><p>Multiple concepts were explored, each balancing elegance with approachability. The final direction was refined through iterative feedback, ensuring the logo works seamlessly across digital and print applications.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Multiple logo concept explorations</li><li>Final logo in all required formats (vector, raster)</li><li>Monochrome and color variations</li><li>Minimum size and clear space guidelines</li><li>Application mockups across fashion collateral</li></ul>'
+  },
+  'strategic-social': {
+    title: 'Strategic Social Media Designs',
+    badge: 'Social Media Strategy',
+    subtitle: 'Data-driven social media visuals aligned with brand messaging and campaign objectives — designed to convert, not just to look good.',
+    behance: 'https://www.behance.net/gallery/246657629/Strategic-Social-Media-Designs',
+    meta: [
+      { label: 'Category', value: 'Social Media Design' },
+      { label: 'Tools', value: 'Adobe Photoshop · Illustrator' },
+      { label: 'Year', value: '2026' }
+    ],
+    about: '<h2>About This Project</h2><p>A strategic social media design project where every visual was crafted with intention. Rather than creating generic posts, each design was aligned to specific campaign objectives — whether that was driving awareness, engagement, or conversions.</p><p>The approach combined data-driven decisions with creative excellence, using A/B testing insights and platform-specific best practices to inform the visual direction.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Campaign-aligned social media post series</li><li>Platform-specific formats (Instagram, Facebook, LinkedIn)</li><li>Carousel and story designs</li><li>Brand-consistent visual templates</li><li>Content calendar integration</li></ul>'
+  },
+  'landing-page': {
+    title: 'Landing Page UI/UX Design',
+    badge: 'UI/UX Design',
+    subtitle: 'High-converting landing page design with strategic hierarchy, compelling CTAs, and pixel-perfect responsive execution.',
+    behance: 'https://www.behance.net/gallery/243891591/Landing-Page-UIUX-Design',
+    meta: [
+      { label: 'Category', value: 'UI/UX · Landing Page' },
+      { label: 'Tools', value: 'Figma' },
+      { label: 'Year', value: '2024' }
+    ],
+    about: '<h2>About This Project</h2><p>A professional landing page designed with conversion optimization at its core. The project involved strategic layout planning, clear visual hierarchy, and trust-building elements — all wrapped in a polished, modern interface.</p><p>Every section was designed with purpose: hero section to capture attention, feature sections to build value, social proof to build trust, and CTAs strategically placed to maximize conversion rates.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Complete landing page design in Figma</li><li>Desktop and mobile responsive layouts</li><li>Interactive prototype with micro-interactions</li><li>Component library and design system</li><li>CTA optimization and A/B test recommendations</li></ul>'
+  },
+  'social-posts': {
+    title: 'Social Media Posts',
+    badge: 'Social Media Design',
+    subtitle: 'Eye-catching social media content designed to boost brand engagement across multiple platforms — Instagram, Facebook, Twitter, and beyond.',
+    behance: 'https://www.behance.net/gallery/245422423/Social-media-posts',
+    meta: [
+      { label: 'Category', value: 'Social Media Design' },
+      { label: 'Tools', value: 'Adobe Photoshop · Illustrator' },
+      { label: 'Year', value: '2026' }
+    ],
+    about: '<h2>About This Project</h2><p>A collection of high-impact social media posts designed to elevate brand presence and drive engagement. Each post was crafted for platform-specific optimization — considering aspect ratios, text-safe zones, and scroll-stopping visual techniques.</p><p>The designs span multiple formats including single-image posts, carousel sequences, and story-format content — all maintaining brand consistency while maximizing reach.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Multi-platform social media post designs</li><li>Instagram feed, story, and carousel formats</li><li>Facebook and LinkedIn optimized assets</li><li>Engagement-focused copy integration</li><li>Brand-consistent template system</li></ul>'
+  },
+  'trading-social': {
+    title: 'Trading Social Media Designs',
+    badge: 'Financial + Social',
+    subtitle: 'Financial content graphics promoting trading strategies — data visualization meets scroll-stopping social media design.',
+    behance: 'https://www.behance.net/gallery/247050123/Trading-Social-media-designs',
+    meta: [
+      { label: 'Category', value: 'Financial Social Media' },
+      { label: 'Tools', value: 'Adobe Photoshop · Illustrator' },
+      { label: 'Year', value: '2026' }
+    ],
+    about: '<h2>About This Project</h2><p>A specialized social media design project for the financial and trading sector. The challenge was to make complex financial data and trading strategies visually accessible and engaging on social platforms.</p><p>Each design balances credibility with visual impact — using clean data visualizations, professional layouts, and platform-optimized formats that build trust while driving engagement in a highly competitive space.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Trading strategy infographic posts</li><li>Market update and analysis templates</li><li>Data visualization social cards</li><li>Platform-optimized financial content</li><li>Professional brand-consistent formats</li></ul>'
+  },
+  'mobile-redesign': {
+    title: 'UI/UX Redesign — Mobile Application',
+    badge: 'UI/UX + Mobile App',
+    subtitle: 'A contemporary mobile app redesign for Elsewedy — a leading multinational in energy solutions and infrastructure.',
+    behance: 'https://www.behance.net/gallery/238672123/UIUX-Redesign-Mobile-Application',
+    meta: [
+      { label: 'Client', value: 'Elsewedy Electric' },
+      { label: 'Tools', value: 'Figma · Adobe Photoshop' },
+      { label: 'Year', value: '2025' }
+    ],
+    about: '<h2>About This Project</h2><p>A complete mobile application redesign for Elsewedy, a leading multinational company in energy solutions and infrastructure. The project aimed to develop a contemporary and approachable application that reflects the client\'s innovative direction and supports their digital transformation goals.</p><p>The redesign focused on improving user experience through better visual hierarchy, streamlined navigation, and a modern design language — while maintaining the brand\'s authority and professionalism in the energy sector.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Complete mobile app redesign (iOS & Android)</li><li>Wireframes and user flow documentation</li><li>High-fidelity mockups and interactive prototype</li><li>Design system with reusable components</li><li>Micro-interaction specifications</li><li>Developer handoff documentation</li></ul>'
+  },
+  'pottery-brand': {
+    title: 'Pottery Brand Identity',
+    badge: 'Brand Identity',
+    subtitle: 'An artisan pottery branding project — reflecting handcrafted traditions through a natural, authentic design language.',
+    behance: 'https://www.behance.net/gallery/230769663/Pottery-Brand-Identity',
+    meta: [
+      { label: 'Client', value: 'La Potteria' },
+      { label: 'Tools', value: 'Adobe Illustrator' },
+      { label: 'Year', value: '2025' }
+    ],
+    about: '<h2>About This Project</h2><p>A complete brand identity for an artisan pottery brand. The design captures the warmth and authenticity of handcrafted pottery — using natural tones, organic forms, and refined typography that communicate craftsmanship and heritage.</p><p>The identity system extends from the logo to packaging, social media presence, and environmental applications — creating a cohesive brand experience that feels premium yet approachable.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Primary logo and brand mark</li><li>Natural, earth-tone color palette</li><li>Typography and brand guidelines</li><li>Packaging design concepts</li><li>Social media brand templates</li><li>Stationery and print collateral</li></ul>'
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const pid = params.get('p');
+const project = projects[pid];
+
+if (project) {
+  document.title = project.title + ' — Ascend Labs';
+  document.getElementById('pBadge').textContent = project.badge;
+  document.getElementById('pTitle').textContent = project.title;
+  document.getElementById('pSubtitle').textContent = project.subtitle;
+  document.getElementById('pBehance').href = project.behance;
+  document.getElementById('pAbout').innerHTML = project.about;
+  document.getElementById('pDeliverables').innerHTML = project.deliverables;
+
+  let metaHTML = '';
+  project.meta.forEach(m => {
+    metaHTML += '<div class="meta-card"><div class="meta-label">' + m.label + '</div><div class="meta-value">' + m.value + '</div></div>';
+  });
+  document.getElementById('pMeta').innerHTML = metaHTML;
+} else {
+  document.getElementById('pTitle').textContent = 'Project Not Found';
+  document.getElementById('pSubtitle').textContent = 'This project doesn\'t exist. Go back to see all our work.';
+}
+</script>
+</body>
+</html>

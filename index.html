@@ -485,23 +485,24 @@ input, select, textarea { font-family: inherit; }
 }
 .clients-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px; margin-top: 40px;
 }
 .client-logo {
   display: flex; align-items: center; justify-content: center;
-  padding: 20px;
+  padding: 24px 20px;
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: 14px;
-  opacity: 0.8;
+  opacity: 0.85;
   transition: opacity 0.2s, transform 0.2s;
-  min-height: 100px;
+  height: 120px;
 }
 .client-logo:hover { opacity: 1; transform: translateY(-2px); }
 .client-logo img {
-  max-height: 55px; max-width: 85%;
+  max-height: 50px; max-width: 80%;
   object-fit: contain;
+  display: block;
 }
 
 /* TESTIMONIALS */
@@ -686,6 +687,7 @@ input, select, textarea { font-family: inherit; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
   .steps-grid { grid-template-columns: 1fr; }
   .clients-grid { grid-template-columns: repeat(2, 1fr); }
+  .client-logo { height: 100px; }
   .footer-grid {
     grid-template-columns: 1fr;
     text-align: center;
@@ -771,13 +773,13 @@ input, select, textarea { font-family: inherit; }
       </div>
       <div class="service-card fade-up">
         <i class="ti ti-palette"></i>
-        <h3>Design</h3>
-        <p>From UI/UX to full brand identity systems — we create visual experiences that are modern, intuitive, and built to convert.</p>
+        <h3>Graphic Design</h3>
+        <p>From logo creation to social media visuals and complete UI/UX systems — pixel-perfect design that communicates, converts, and elevates your brand.</p>
         <div class="service-tags">
+          <span class="service-tag">Logo Design</span>
           <span class="service-tag">UI/UX</span>
-          <span class="service-tag">Website Design</span>
-          <span class="service-tag">Mobile App Design</span>
-          <span class="service-tag">Brand Identity</span>
+          <span class="service-tag">Social Media</span>
+          <span class="service-tag">Graphic Design</span>
         </div>
       </div>
       <div class="service-card fade-up">
@@ -874,92 +876,83 @@ input, select, textarea { font-family: inherit; }
     <div class="filter-tabs fade-up">
       <button class="filter-tab active" data-filter="all">All</button>
       <button class="filter-tab" data-filter="branding">Branding</button>
-      <button class="filter-tab" data-filter="web">Web</button>
-      <button class="filter-tab" data-filter="campaigns">Campaigns</button>
-      <button class="filter-tab" data-filter="mobile">Mobile</button>
+      <button class="filter-tab" data-filter="design">Design</button>
+      <button class="filter-tab" data-filter="social">Social Media</button>
+      <button class="filter-tab" data-filter="uiux">UI/UX</button>
     </div>
     <div class="portfolio-grid">
-      <div class="portfolio-card fade-up" data-cat="branding campaigns">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1a1a2e)">AMMURAPI</div>
+      <a class="portfolio-card fade-up" data-cat="branding design" href="project.html?p=logo-brand-identity">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1a1a2e)">LOGO & BRAND IDENTITY</div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Marketing</span>
-          <h3>Ammurapi</h3>
-          <p>Full brand identity & digital presence</p>
+          <span class="portfolio-badge">Logo Design + Brand Identity</span>
+          <h3>Logo Design & Brand Identity</h3>
+          <p>Distinctive logos and complete brand systems</p>
         </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="branding web">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#1a2030)">SHAZAM</div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="design" href="project.html?p=logo-design">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#1a2030)">LOGO DESIGN</div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Web</span>
-          <h3>Shazam Real Estate</h3>
-          <p>Brand system & website launch</p>
+          <span class="portfolio-badge">Logo Design</span>
+          <h3>Logo Design Collection</h3>
+          <p>Logo redesign for semi-formal fashion wear</p>
         </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="branding campaigns">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1e1e2e)">EVORA</div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="social campaigns" href="project.html?p=strategic-social">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1e1e2e)">STRATEGIC SOCIAL</div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Campaign</span>
-          <h3>Evora</h3>
-          <p>Brand identity & marketing strategy</p>
+          <span class="portfolio-badge">Social Media Strategy</span>
+          <h3>Strategic Social Media Designs</h3>
+          <p>Visuals aligned with brand messaging & campaign goals</p>
         </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="branding campaigns">
+      </a>
+      <a class="portfolio-card fade-up" data-cat="uiux web" href="project.html?p=landing-page">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#152040)">LANDING PAGE</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">UI/UX Design</span>
+          <h3>Landing Page UI/UX Design</h3>
+          <p>High-converting landing page with strategic CTAs</p>
+        </div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="social campaigns" href="project.html?p=social-posts">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#201525)">SOCIAL MEDIA</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Social Media Design</span>
+          <h3>Social Media Posts</h3>
+          <p>Eye-catching posts boosting brand engagement</p>
+        </div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="social campaigns" href="project.html?p=trading-social">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#152535)">TRADING DESIGNS</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Financial + Social</span>
+          <h3>Trading Social Media Designs</h3>
+          <p>Financial content graphics & trading strategies</p>
+        </div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="uiux mobile" href="project.html?p=mobile-redesign">
+        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#152040)">MOBILE APP</div>
+        <div class="portfolio-overlay">View Project →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">UI/UX + Mobile App</span>
+          <h3>UI/UX Redesign — Mobile Application</h3>
+          <p>Mobile app redesign for Elsewedy · energy solutions</p>
+        </div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="branding design" href="project.html?p=pottery-brand">
         <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#1a1520)">LA POTTERIA</div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Social</span>
-          <h3>La Potteria</h3>
-          <p>Brand identity & social media management</p>
+          <span class="portfolio-badge">Brand Identity</span>
+          <h3>Pottery Brand Identity</h3>
+          <p>Artisan pottery branding reflecting handcrafted traditions</p>
         </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="branding campaigns">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#201520)">BEIT EL MODA</div>
-        <div class="portfolio-overlay">View Project →</div>
-        <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Marketing</span>
-          <h3>Beit El Moda</h3>
-          <p>Fashion brand identity & digital campaign</p>
-        </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="branding campaigns">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#152030)">DUCK DIET</div>
-        <div class="portfolio-overlay">View Project →</div>
-        <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Social</span>
-          <h3>Duck Diet</h3>
-          <p>Brand identity & content strategy</p>
-        </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="branding campaigns">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#152535)">GOLDEN SHARE</div>
-        <div class="portfolio-overlay">View Project →</div>
-        <div class="portfolio-info">
-          <span class="portfolio-badge">Full Campaign</span>
-          <h3>Golden Share</h3>
-          <p>Financial services branding & digital</p>
-        </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="mobile campaigns">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#1a2540)">QUICK OUT</div>
-        <div class="portfolio-overlay">View Project →</div>
-        <div class="portfolio-info">
-          <span class="portfolio-badge">Mobile App + Marketing</span>
-          <h3>Quick Out</h3>
-          <p>App design & digital campaign</p>
-        </div>
-      </div>
-      <div class="portfolio-card fade-up" data-cat="campaigns branding">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1E2A40)">AL SAHM AL THAHABI</div>
-        <div class="portfolio-overlay">View Project →</div>
-        <div class="portfolio-info">
-          <span class="portfolio-badge">Branding + Marketing</span>
-          <h3>Al Sahm Al Thahabi</h3>
-          <p>Financial services branding & digital</p>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1049,12 +1042,10 @@ input, select, textarea { font-family: inherit; }
     <div class="clients-grid">
       <div class="client-logo fade-up"><img src="assets/ammurapi.png" alt="Ammurapi"></div>
       <div class="client-logo fade-up"><img src="assets/shazam.jpg" alt="Shazam Real Estate"></div>
-      <div class="client-logo fade-up" style="background:#111"><img src="assets/evora.png" alt="Evora"></div>
+      <div class="client-logo fade-up"><img src="assets/evora.png" alt="Evora" style="filter:brightness(0);"></div>
       <div class="client-logo fade-up"><img src="assets/la-potteria.png" alt="La Potteria"></div>
-      <div class="client-logo fade-up"><img src="assets/beit-el-moda.png" alt="Beit El Moda"></div>
       <div class="client-logo fade-up"><img src="assets/duck-diet.png" alt="Duck Diet"></div>
       <div class="client-logo fade-up"><img src="assets/golden-share.png" alt="Golden Share"></div>
-      <div class="client-logo fade-up" style="font-weight:700;font-size:18px;color:#111;letter-spacing:1px;">QUICK OUT</div>
     </div>
   </div>
 </section>
@@ -1120,7 +1111,7 @@ input, select, textarea { font-family: inherit; }
           <option>Web Development</option>
           <option>Mobile Development</option>
           <option>Media Buying</option>
-          <option>Design</option>
+          <option>Graphic Design</option>
           <option>Full Package</option>
         </select>
         <textarea placeholder="Your brief" rows="4"></textarea>
