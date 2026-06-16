@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;background:rgba(0,0,0,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--blue)}
 .nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo img{height:36px;width:auto;filter:brightness(0) invert(1)}
+.nav-logo img{height:140px;width:auto;filter:brightness(0) invert(1);margin:-40px 0}
 .nav-back{font-size:14px;font-weight:500;color:var(--text-muted);display:flex;align-items:center;gap:6px;transition:color 0.2s}
 .nav-back:hover{color:var(--white)}
 
@@ -62,6 +62,11 @@ a{color:inherit;text-decoration:none}
 .footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center}
 .footer p{font-size:12px;color:var(--text-muted)}
 
+.project-gallery{padding:20px 24px 60px}
+.project-gallery h2{font-size:28px;font-weight:700;margin-bottom:24px;text-align:center}
+.gallery-grid{display:flex;flex-direction:column;gap:12px;max-width:900px;margin:0 auto}
+.gallery-grid img{width:100%;border-radius:10px;display:block}
+
 @media(max-width:768px){
   .project-meta{grid-template-columns:1fr}
 }
@@ -89,6 +94,8 @@ a{color:inherit;text-decoration:none}
   <section class="project-section" id="pDeliverables"></section>
 </div>
 
+<section class="project-gallery" id="pGallery"></section>
+
 <section class="project-cta">
   <h2>Want results like this?</h2>
   <p>Let's talk about your project and build something that lasts.</p>
@@ -107,6 +114,14 @@ const projects = {
     badge: 'Logo Design + Brand Identity',
     subtitle: 'Distinctive logos and complete brand identity systems that capture the essence of every brand — scalable, versatile, and built to last.',
     behance: 'https://www.behance.net/gallery/206862839/Logo-Design-Brand-Identity',
+    images: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/89fb82206862839.66d3a533b6b98.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b4ed39206862839.66d3a533bfa23.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/db01e2206862839.66d3a533b90dc.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ca0659206862839.66d3a533bd815.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ce8ffd206862839.66d3a533bc8d5.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a311b7206862839.66d3a533b797c.jpg'
+    ],
     meta: [
       { label: 'Category', value: 'Brand Identity & Logo Design' },
       { label: 'Tools', value: 'Adobe Illustrator · Photoshop' },
@@ -120,6 +135,13 @@ const projects = {
     badge: 'Logo Design',
     subtitle: 'Logo redesign for semi-formal fashion wear — modern, minimal, and crafted for a refined brand presence.',
     behance: 'https://www.behance.net/gallery/244136271/Logo-Design',
+    images: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/bd285e244136271.69908553ba096.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b80466244136271.69908553bac98.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0ead79244136271.69908553b992b.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3326ec244136271.69908553bb378.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4d571d244136271.69908553ba577.jpg'
+    ],
     meta: [
       { label: 'Category', value: 'Logo Redesign' },
       { label: 'Tools', value: 'Adobe Illustrator · Photoshop' },
@@ -133,6 +155,7 @@ const projects = {
     badge: 'Social Media Strategy',
     subtitle: 'Data-driven social media visuals aligned with brand messaging and campaign objectives — designed to convert, not just to look good.',
     behance: 'https://www.behance.net/gallery/246657629/Strategic-Social-Media-Designs',
+    images: [],
     meta: [
       { label: 'Category', value: 'Social Media Design' },
       { label: 'Tools', value: 'Adobe Photoshop · Illustrator' },
@@ -146,6 +169,14 @@ const projects = {
     badge: 'UI/UX Design',
     subtitle: 'High-converting landing page design with strategic hierarchy, compelling CTAs, and pixel-perfect responsive execution.',
     behance: 'https://www.behance.net/gallery/243891591/Landing-Page-UIUX-Design',
+    images: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2ea4d0243891591.698b422f7361f.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/bce26d243891591.698b422f74ada.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f6a5e9243891591.698b422f742ae.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ddd1f5243891591.698b422f7576b.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a4415c243891591.698b422f7523d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a87555243891591.698b422f73d8e.png'
+    ],
     meta: [
       { label: 'Category', value: 'UI/UX · Landing Page' },
       { label: 'Tools', value: 'Figma' },
@@ -159,6 +190,7 @@ const projects = {
     badge: 'Social Media Design',
     subtitle: 'Eye-catching social media content designed to boost brand engagement across multiple platforms — Instagram, Facebook, Twitter, and beyond.',
     behance: 'https://www.behance.net/gallery/245422423/Social-media-posts',
+    images: [],
     meta: [
       { label: 'Category', value: 'Social Media Design' },
       { label: 'Tools', value: 'Adobe Photoshop · Illustrator' },
@@ -172,6 +204,7 @@ const projects = {
     badge: 'Financial + Social',
     subtitle: 'Financial content graphics promoting trading strategies — data visualization meets scroll-stopping social media design.',
     behance: 'https://www.behance.net/gallery/247050123/Trading-Social-media-designs',
+    images: [],
     meta: [
       { label: 'Category', value: 'Financial Social Media' },
       { label: 'Tools', value: 'Adobe Photoshop · Illustrator' },
@@ -185,6 +218,14 @@ const projects = {
     badge: 'UI/UX + Mobile App',
     subtitle: 'A contemporary mobile app redesign for Elsewedy — a leading multinational in energy solutions and infrastructure.',
     behance: 'https://www.behance.net/gallery/238672123/UIUX-Redesign-Mobile-Application',
+    images: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/acaec5238672123.6919bc9fba95c.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/bb18c9238672123.6919bc9fbc871.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0afeb5238672123.6919bc9fbb6f7.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2bae7b238672123.6919bc9fbc35a.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fe1a8e238672123.6919bc9fbbe5e.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/10f64a238672123.6919bc9fbb13a.jpg'
+    ],
     meta: [
       { label: 'Client', value: 'Elsewedy Electric' },
       { label: 'Tools', value: 'Figma · Adobe Photoshop' },
@@ -193,11 +234,26 @@ const projects = {
     about: '<h2>About This Project</h2><p>A complete mobile application redesign for Elsewedy, a leading multinational company in energy solutions and infrastructure. The project aimed to develop a contemporary and approachable application that reflects the client\'s innovative direction and supports their digital transformation goals.</p><p>The redesign focused on improving user experience through better visual hierarchy, streamlined navigation, and a modern design language — while maintaining the brand\'s authority and professionalism in the energy sector.</p>',
     deliverables: '<h2>Deliverables</h2><ul><li>Complete mobile app redesign (iOS & Android)</li><li>Wireframes and user flow documentation</li><li>High-fidelity mockups and interactive prototype</li><li>Design system with reusable components</li><li>Micro-interaction specifications</li><li>Developer handoff documentation</li></ul>'
   },
+  'lunavie-clinic': {
+    title: 'Lunavie Clinic Website',
+    badge: 'Web Development',
+    subtitle: 'A luxury aesthetic and dermatology clinic website — bilingual, conversion-optimized, and built to reflect premium medical care.',
+    behance: 'https://lunavie-clinic.com',
+    images: [],
+    meta: [
+      { label: 'Client', value: 'Lunavie Clinic' },
+      { label: 'Tools', value: 'React · Vite · Tailwind CSS' },
+      { label: 'Year', value: '2025' }
+    ],
+    about: '<h2>About This Project</h2><p>A complete website design and development project for Lunavie, a luxury aesthetic and dermatology clinic with two branches in Cairo, Egypt. The site was built to communicate trust, professionalism, and premium care — targeting clients seeking advanced laser, skincare, and injectable treatments.</p><p>The design features a clean, elegant layout with high-quality imagery, marble textures, and a modern color scheme. Full bilingual support (English and Arabic) was implemented with RTL layout handling, ensuring a seamless experience for all visitors.</p>',
+    deliverables: '<h2>Deliverables</h2><ul><li>Full responsive website design and development</li><li>Bilingual support (English & Arabic) with RTL layout</li><li>Service pages with detailed treatment information</li><li>Appointment booking integration</li><li>SEO optimization and performance tuning</li><li>Google Maps and WhatsApp integration</li><li>Trust indicators and social proof sections</li></ul>'
+  },
   'pottery-brand': {
     title: 'Pottery Brand Identity',
     badge: 'Brand Identity',
     subtitle: 'An artisan pottery branding project — reflecting handcrafted traditions through a natural, authentic design language.',
     behance: 'https://www.behance.net/gallery/230769663/Pottery-Brand-Identity',
+    images: [],
     meta: [
       { label: 'Client', value: 'La Potteria' },
       { label: 'Tools', value: 'Adobe Illustrator' },
@@ -226,6 +282,13 @@ if (project) {
     metaHTML += '<div class="meta-card"><div class="meta-label">' + m.label + '</div><div class="meta-value">' + m.value + '</div></div>';
   });
   document.getElementById('pMeta').innerHTML = metaHTML;
+
+  if (project.images && project.images.length) {
+    let gHTML = '<h2>Project Gallery</h2><div class="gallery-grid">';
+    project.images.forEach(src => { gHTML += '<img src="' + src + '" alt="' + project.title + '" loading="lazy">'; });
+    gHTML += '</div>';
+    document.getElementById('pGallery').innerHTML = gHTML;
+  }
 } else {
   document.getElementById('pTitle').textContent = 'Project Not Found';
   document.getElementById('pSubtitle').textContent = 'This project doesn\'t exist. Go back to see all our work.';

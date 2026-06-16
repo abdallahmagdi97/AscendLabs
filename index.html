@@ -98,7 +98,7 @@ input, select, textarea { font-family: inherit; }
 /* NAV */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 14px 0;
+  padding: 10px 0;
   transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
   border-bottom: 1px solid transparent;
 }
@@ -110,7 +110,7 @@ input, select, textarea { font-family: inherit; }
 .nav .container {
   display: flex; align-items: center; justify-content: space-between;
 }
-.nav-logo img { height: 36px; width: auto; filter: brightness(0) invert(1); }
+.nav-logo img { height: 140px; width: auto; filter: brightness(0) invert(1); margin: -40px 0; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
   font-size: 14px; font-weight: 500; color: var(--text-muted);
@@ -500,7 +500,7 @@ input, select, textarea { font-family: inherit; }
 }
 .client-logo:hover { opacity: 1; transform: translateY(-2px); }
 .client-logo img {
-  max-height: 50px; max-width: 80%;
+  width: 100%; height: 60px;
   object-fit: contain;
   display: block;
 }
@@ -622,7 +622,7 @@ input, select, textarea { font-family: inherit; }
   gap: 24px; align-items: center;
   padding-bottom: 32px;
 }
-.footer-logo img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+.footer-logo img { height: 120px; width: auto; filter: brightness(0) invert(1); margin: -30px 0; }
 .footer-tagline {
   font-size: 14px; color: var(--text-muted);
   margin-top: 6px; font-style: italic;
@@ -882,7 +882,7 @@ input, select, textarea { font-family: inherit; }
     </div>
     <div class="portfolio-grid">
       <a class="portfolio-card fade-up" data-cat="branding design" href="project.html?p=logo-brand-identity">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1a1a2e)">LOGO & BRAND IDENTITY</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/1ec6ba206862839.Y3JvcCwxMzgwLDEwODAsMCww.jpg') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">Logo Design + Brand Identity</span>
@@ -891,7 +891,7 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="design" href="project.html?p=logo-design">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#1a2030)">LOGO DESIGN</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/9dc765244136271.Y3JvcCwyMDg1LDE2MzAsMCwyMjc.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">Logo Design</span>
@@ -900,7 +900,7 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="social campaigns" href="project.html?p=strategic-social">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#1e1e2e)">STRATEGIC SOCIAL</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/82c4db245422423.Y3JvcCw4MDgsNjMyLDAsMA.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">Social Media Strategy</span>
@@ -909,7 +909,7 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="uiux web" href="project.html?p=landing-page">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#152040)">LANDING PAGE</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/36cb66243891591.Y3JvcCwzNTI4LDI3NjAsNzgsMA.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">UI/UX Design</span>
@@ -918,7 +918,7 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="social campaigns" href="project.html?p=social-posts">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#201525)">SOCIAL MEDIA</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/82c4db245422423.Y3JvcCw4MDgsNjMyLDAsMA.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">Social Media Design</span>
@@ -927,7 +927,7 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="social campaigns" href="project.html?p=trading-social">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#152535)">TRADING DESIGNS</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/902b36247050123.Y3JvcCw4MDgsNjMyLDAsMA.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">Financial + Social</span>
@@ -936,7 +936,7 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="uiux mobile" href="project.html?p=mobile-redesign">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#111,#152040)">MOBILE APP</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/a86e6d238672123.Y3JvcCwzODM1LDMwMDAsODUsMA.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">UI/UX + Mobile App</span>
@@ -945,12 +945,21 @@ input, select, textarea { font-family: inherit; }
         </div>
       </a>
       <a class="portfolio-card fade-up" data-cat="branding design" href="project.html?p=pottery-brand">
-        <div class="portfolio-img" style="background:linear-gradient(135deg,#0a0a0a,#1a1520)">LA POTTERIA</div>
+        <div class="portfolio-img" style="background:url('https://mir-s3-cdn-cf.behance.net/projects/404/659e82230769663.Y3JvcCwxMTk1LDkzNSwxNjgsMA.png') center/cover"></div>
         <div class="portfolio-overlay">View Project →</div>
         <div class="portfolio-info">
           <span class="portfolio-badge">Brand Identity</span>
           <h3>Pottery Brand Identity</h3>
           <p>Artisan pottery branding reflecting handcrafted traditions</p>
+        </div>
+      </a>
+      <a class="portfolio-card fade-up" data-cat="uiux web" href="https://lunavie-clinic.com" target="_blank">
+        <div class="portfolio-img" style="background:#f5f0f8 url('assets/lunavie.webp') center/contain no-repeat"></div>
+        <div class="portfolio-overlay">Visit Website →</div>
+        <div class="portfolio-info">
+          <span class="portfolio-badge">Web Development</span>
+          <h3>Lunavie Clinic Website</h3>
+          <p>Luxury aesthetic clinic website with bilingual support</p>
         </div>
       </a>
     </div>
@@ -1046,6 +1055,7 @@ input, select, textarea { font-family: inherit; }
       <div class="client-logo fade-up"><img src="assets/la-potteria.png" alt="La Potteria"></div>
       <div class="client-logo fade-up"><img src="assets/duck-diet.png" alt="Duck Diet"></div>
       <div class="client-logo fade-up"><img src="assets/golden-share.png" alt="Golden Share"></div>
+      <div class="client-logo fade-up"><a href="https://lunavie-clinic.com" target="_blank"><img src="assets/lunavie.webp" alt="Lunavie Clinic"></a></div>
     </div>
   </div>
 </section>
