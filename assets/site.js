@@ -3,6 +3,8 @@
   'use strict';
 
   var doc = document;
+  // Tells the stylesheet that scripting is available (used for reveal-on-scroll and the pricing tabs).
+  doc.documentElement.classList.add('js');
   function $(s, r) { return (r || doc).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); }
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -32,6 +34,9 @@
     });
     doc.addEventListener('click', function (e) {
       if (!wrap.contains(e.target)) closeAll();
+    });
+    wrap.addEventListener('focusout', function (e) {
+      if (e.relatedTarget && !wrap.contains(e.relatedTarget)) closeAll();
     });
     doc.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
@@ -109,56 +114,30 @@
     });
   });
 
-  /* ---------- Products directory filter ---------- */
+  /* ---------- Pricing tabs + billing period (all plans are in the HTML; this only toggles) ---------- */
   (function () {
-    var chips = $$('[data-filter]');
-    var cards = $$('[data-tags]');
-    if (!chips.length || !cards.length) return;
-    var status = $('#filter-status');
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var f = chip.getAttribute('data-filter');
-        chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
-        var shown = 0;
-        cards.forEach(function (card) {
-          var tags = (card.getAttribute('data-tags') || '').split(' ');
-          var show = f === 'all' || tags.indexOf(f) !== -1;
-          card.hidden = !show;
-          if (show) shown++;
-        });
-        if (status) status.textContent = 'Showing ' + shown + (shown === 1 ? ' product' : ' products');
-      });
-    });
-  })();
-
-  /* ---------- Pricing tabs + billing period ---------- */
-  (function () {
-    var P = window.AscendPricing;
-    var plansEl = $('#plans');
-    if (!P || !plansEl) return;
+    var root = $('[data-pricing]');
+    if (!root) return;
     var tabs = $$('[data-tab]');
     var periods = $$('[data-period]');
-    var state = { tab: 'crm', period: 'annual' };
-    var panel = $('#plans-panel');
+    var panels = {};
+    tabs.forEach(function (t) { panels[t.getAttribute('data-tab')] = doc.getElementById(t.getAttribute('aria-controls')); });
 
-    function render() {
-      plansEl.innerHTML = P.renderPlans(state.tab, state.period);
-      var cmp = $('#compare-table');
-      if (cmp) cmp.innerHTML = P.renderCompare(state.tab, state.period);
-      var title = $('#compare-title');
-      if (title) title.textContent = 'Compare ' + P.tabName(state.tab) + ' plans';
+    function selectTab(name) {
+      if (!panels[name]) return;
       tabs.forEach(function (t) {
-        var on = t.getAttribute('data-tab') === state.tab;
+        var on = t.getAttribute('data-tab') === name;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
         t.tabIndex = on ? 0 : -1;
-        if (on && panel) panel.setAttribute('aria-labelledby', t.id);
-      });
-      periods.forEach(function (p) {
-        p.setAttribute('aria-pressed', p.getAttribute('data-period') === state.period ? 'true' : 'false');
+        panels[t.getAttribute('data-tab')].hidden = !on;
       });
     }
+    function setPeriod(p) {
+      root.setAttribute('data-billing', p);
+      periods.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-period') === p ? 'true' : 'false'); });
+    }
     tabs.forEach(function (t, i) {
-      t.addEventListener('click', function () { state.tab = t.getAttribute('data-tab'); render(); });
+      t.addEventListener('click', function () { selectTab(t.getAttribute('data-tab')); });
       t.addEventListener('keydown', function (e) {
         var n = null;
         if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
@@ -168,9 +147,41 @@
         if (n) { e.preventDefault(); n.focus(); n.click(); }
       });
     });
-    periods.forEach(function (p) {
-      p.addEventListener('click', function () { state.period = p.getAttribute('data-period'); render(); });
+    periods.forEach(function (b) {
+      b.addEventListener('click', function () { setPeriod(b.getAttribute('data-period')); });
     });
+
+    // pricing.html#crm and pricing.html#agent open the matching tab.
+    function fromHash(scroll) {
+      var h = (location.hash || '').replace('#', '');
+      selectTab(panels[h] ? h : 'crm');
+      if (scroll && panels[h]) {
+        var c = $('[data-pricing-controls]');
+        if (c && c.scrollIntoView) c.scrollIntoView({ block: 'start' });
+      }
+    }
+    window.addEventListener('hashchange', function () { fromHash(false); });
+    setPeriod('monthly');
+    fromHash(true);
+  })();
+
+  /* ---------- Campaign attribution: keep UTM / click-id params for the session (first-party, sessionStorage only) ---------- */
+  var ATTR_KEY = 'ascend_attr';
+  var ATTR_MAP = { utm_source: 'utmSource', utm_medium: 'utmMedium', utm_campaign: 'utmCampaign', utm_content: 'utmContent', utm_term: 'utmTerm', gclid: 'gclid', fbclid: 'fbclid' };
+  function readAttr() {
+    try { return JSON.parse(window.sessionStorage.getItem(ATTR_KEY) || '{}') || {}; } catch (e) { return {}; }
+  }
+  (function captureAttribution() {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var stored = readAttr();
+      var changed = false;
+      Object.keys(ATTR_MAP).forEach(function (k) {
+        var v = q.get(k);
+        if (v) { stored[ATTR_MAP[k]] = v.slice(0, 200); changed = true; }
+      });
+      if (changed) window.sessionStorage.setItem(ATTR_KEY, JSON.stringify(stored));
+    } catch (e) { /* storage blocked: attribution is optional */ }
   })();
 
   /* ---------- Contact form ---------- */
@@ -180,24 +191,30 @@
 
     var endpoint = form.getAttribute('data-endpoint') || '';
     var mailTo = form.getAttribute('data-mailto') || '';
-    var fields = ['name', 'email', 'company', 'product', 'message'];
-    var productLabels = { crm: 'Ascend CRM', campaigns: 'Ascend Campaigns', both: 'Both / a bundle', unsure: 'Not sure yet' };
+    var fields = ['name', 'email', 'company', 'role', 'product', 'intent', 'message'];
+    var roleLabels = { brokerage_or_developer: 'Brokerage or developer (Ascend CRM)', sales_agent: 'Sales agent (Ascend Agent)' };
+    var productLabels = { crm: 'Ascend CRM', agent: 'Ascend Agent', bundle: 'Both', other: 'Not sure yet' };
+    var intentLabels = { demo: 'Book a demo', quote: 'Get a quote', question: 'Ask a question' };
     var attempted = false;
     var phase = 'idle';
 
     var summary = $('#form-summary');
     var errorBox = $('#form-error');
+    var errorText = $('#form-error-text');
+    var errorDefault = errorText ? errorText.innerHTML : '';
     var submit = $('#form-submit');
     var submitLabel = $('#form-submit-label');
     var spinner = $('#form-spinner');
     var successBox = $('#form-success');
+    var live = $('#form-status');
 
     function el(k) { return doc.getElementById('f-' + k); }
     function val(k) { return (el(k).value || '').trim(); }
+    function announce(msg) { if (live) live.textContent = msg; }
     function values() {
       return {
-        name: val('name'), email: val('email'), company: val('company'), product: el('product').value,
-        message: val('message'), consent: !!$('#f-consent').checked
+        name: val('name'), email: val('email'), company: val('company'), role: el('role').value, product: el('product').value,
+        intent: el('intent').value, message: val('message'), consent: !!$('#f-consent').checked
       };
     }
     function validate(v) {
@@ -206,7 +223,9 @@
       if (!v.email) e.email = 'Enter your business email.';
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) e.email = 'Enter a valid email, like name@company.com.';
       if (!v.company) e.company = 'Enter your company name.';
+      if (!v.role) e.role = 'Choose the option that describes you.';
       if (!v.product) e.product = 'Choose a product, or “Not sure yet”.';
+      if (!v.intent) e.intent = 'Tell us what you need.';
       if (v.message.length < 10) e.message = 'Add a short message (at least 10 characters).';
       return e;
     }
@@ -233,14 +252,22 @@
       }
       return count;
     }
-    function setPhase(p) {
+    function setPhase(p, message) {
       phase = p;
       var loading = p === 'loading';
       submit.disabled = loading;
       submit.setAttribute('aria-busy', loading ? 'true' : 'false');
       spinner.hidden = !loading;
       submitLabel.textContent = loading ? 'Sending…' : (p === 'error' ? 'Try again' : 'Send message');
-      errorBox.hidden = p !== 'error';
+      if (p === 'error') {
+        if (errorText) {
+          if (message) errorText.textContent = message; else errorText.innerHTML = errorDefault;
+        }
+        errorBox.hidden = false;
+      } else {
+        errorBox.hidden = true;
+      }
+      if (loading) announce('Sending your message…');
     }
     function showSuccess(mode, v) {
       var first = (v.name || 'there').split(' ')[0];
@@ -263,7 +290,7 @@
       }
       form.hidden = true;
       successBox.hidden = false;
-      successBox.setAttribute('tabindex', '-1');
+      announce(mode === 'mail' ? 'Your email app should open with your message.' : 'Message sent. We will reply to ' + v.email + '.');
       successBox.focus();
     }
     function mailtoUrl(v) {
@@ -271,14 +298,32 @@
         'Name: ' + v.name,
         'Email: ' + v.email,
         'Company: ' + v.company,
+        'I am a: ' + (roleLabels[v.role] || v.role),
         'Product of interest: ' + (productLabels[v.product] || v.product),
+        'What I need: ' + (intentLabels[v.intent] || v.intent),
         '',
         v.message,
         '',
         'Product updates: ' + (v.consent ? 'yes, send me occasional updates' : 'no')
       ];
-      return 'mailto:' + mailTo + '?subject=' + encodeURIComponent('Enquiry from ascend-labs.cc — ' + (productLabels[v.product] || 'general')) +
+      return 'mailto:' + mailTo + '?subject=' + encodeURIComponent('Enquiry from ascend-labs.cc — ' + (intentLabels[v.intent] || 'general')) +
         '&body=' + encodeURIComponent(lines.join('\n'));
+    }
+    function mailFallback(v) {
+      setPhase('idle');
+      window.location.href = mailtoUrl(v);
+      showSuccess('mail', v);
+    }
+    function payloadFor(v) {
+      var payload = {
+        name: v.name, email: v.email, company: v.company, role: v.role, product: v.product, intent: v.intent,
+        message: v.message, marketingOptIn: v.consent,
+        website: ($('#f-website') || {}).value || '',
+        page: window.location.pathname
+      };
+      var attr = readAttr();
+      Object.keys(attr).forEach(function (k) { if (attr[k]) payload[k] = attr[k]; });
+      return payload;
     }
 
     fields.forEach(function (k) {
@@ -288,10 +333,15 @@
       input.addEventListener('change', handler);
     });
 
-    // Preselect the product from ?product=crm|campaigns|both|unsure
+    // Preselect from ?product=crm|agent|bundle|other and ?intent=demo|quote|question.
+    // (?product=campaigns is an old link; that tool is now part of Ascend Agent.)
     try {
-      var q = new URLSearchParams(window.location.search).get('product');
-      if (q && productLabels[q]) el('product').value = q;
+      var params = new URLSearchParams(window.location.search);
+      var qp = params.get('product');
+      if (qp === 'campaigns') qp = 'agent';
+      if (qp && productLabels[qp]) el('product').value = qp;
+      var qi = params.get('intent');
+      if (qi && intentLabels[qi]) el('intent').value = qi;
     } catch (err) { /* ignore */ }
 
     form.addEventListener('submit', function (ev) {
@@ -302,35 +352,44 @@
       attempted = true;
       var count = showErrors(errors);
       if (count) {
+        announce('Please fix ' + count + (count === 1 ? ' field.' : ' fields.'));
         for (var i = 0; i < fields.length; i++) {
           if (errors[fields[i]]) { el(fields[i]).focus(); break; }
         }
         return;
       }
-      // Honeypot: bots fill the hidden field. Pretend success, send nothing.
-      var hp = $('#f-website');
-      if (hp && hp.value) { showSuccess(endpoint ? 'api' : 'mail', v); return; }
 
       setPhase('loading');
-      if (!endpoint) {
-        // No form backend is connected, so hand the message to the visitor's email app.
-        window.setTimeout(function () {
-          setPhase('idle');
-          window.location.href = mailtoUrl(v);
-          showSuccess('mail', v);
-        }, 400);
-        return;
-      }
-      var payload = {
-        name: v.name, email: v.email, company: v.company, product: v.product, message: v.message,
-        marketingConsent: v.consent,
-        consentText: v.consent ? $('#consent-text').textContent.trim() : '',
-        source: window.location.pathname,
-        submittedAt: new Date().toISOString()
-      };
-      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
-        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); setPhase('idle'); showSuccess('api', v); })
-        .catch(function () { setPhase('error'); errorBox.focus && errorBox.focus(); });
+      if (!endpoint) { window.setTimeout(function () { mailFallback(v); }, 300); return; }
+
+      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payloadFor(v)) })
+        .then(function (r) {
+          if (r.status === 202 || r.ok) { setPhase('idle'); showSuccess('api', v); return; }
+          if (r.status === 503) { mailFallback(v); return; }          // email unavailable on the server: hand over to the visitor's email app
+          if (r.status === 429) {
+            setPhase('error', 'You’ve sent several messages in a short time. Please wait a few minutes and try again, or email us at ' + mailTo + '.');
+            errorBox.focus();
+            return;
+          }
+          if (r.status === 400) {
+            return r.json().then(function (body) { return body || {}; }, function () { return {}; }).then(function (body) {
+              var errs = {};
+              if (body.field && fields.indexOf(body.field) !== -1) errs[body.field] = body.message || 'Check this field.';
+              if (Object.keys(errs).length) {
+                attempted = true;
+                setPhase('idle');
+                showErrors(errs);
+                el(body.field).focus();
+              } else {
+                setPhase('error', body.message || undefined);
+                errorBox.focus();
+              }
+            });
+          }
+          setPhase('error');
+          errorBox.focus();
+        })
+        .catch(function () { mailFallback(v); });                     // network error, blocked request or CORS failure
     });
 
     var again = $('#form-reset');
@@ -341,25 +400,63 @@
       setPhase('idle');
       successBox.hidden = true;
       form.hidden = false;
+      announce('');
       el('name').focus();
     });
   })();
 
-  /* ---------- Section reveal on scroll (once, first appearance only) ---------- */
+  /* ---------- Section reveal on scroll ----------
+   * Content is visible by default (see site.css). Only sections that start below the fold are hidden,
+   * and they are revealed when they come near the viewport, when they are already above it (anchor jumps,
+   * restored scroll, fast scrolling), on print, and by a safety net if the observer never reports. */
   (function () {
     if (reduceMotion || !('IntersectionObserver' in window)) return;
     var targets = $$('main .sec > .container, main .sec-b > .container, main .sec > .faq-narrow, main .sec-b > .faq-narrow');
     if (!targets.length) return;
+    var pending = [];
+    var reported = false;
+
+    function show(t) {
+      t.classList.add('is-visible');
+      var i = pending.indexOf(t);
+      if (i !== -1) pending.splice(i, 1);
+      io.unobserve(t);
+    }
+    function showAll() { pending.slice().forEach(show); }
+    // Reveal anything at or above the bottom of the viewport (covers sections scrolled past too quickly to intersect).
+    function sweep() {
+      var limit = window.innerHeight * 1.1;
+      pending.slice().forEach(function (t) { if (t.getBoundingClientRect().top < limit) show(t); });
+    }
+
     var io = new IntersectionObserver(function (entries) {
+      reported = true;
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+        if (en.isIntersecting || en.boundingClientRect.top < 0) show(en.target);
       });
-    }, { threshold: 0.06, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px 120px 0px' });
+
     targets.forEach(function (t) {
       var r = t.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.9) return; // already in view: no animation
+      if (r.top < window.innerHeight * 0.9) return; // in view or above: never hidden, no animation
       t.classList.add('reveal');
+      pending.push(t);
       io.observe(t);
     });
+
+    var timer = null;
+    window.addEventListener('scroll', function () {
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(sweep, 120);
+    }, { passive: true });
+    window.addEventListener('hashchange', function () { window.setTimeout(sweep, 50); });
+    window.addEventListener('resize', sweep);
+    window.addEventListener('beforeprint', showAll);
+    window.addEventListener('pageshow', sweep);
+    window.addEventListener('load', function () {
+      sweep();
+      window.setTimeout(function () { if (!reported) showAll(); }, 1500); // observer never reported: show everything
+    });
+    if (location.hash) window.setTimeout(sweep, 50);
   })();
 })();
