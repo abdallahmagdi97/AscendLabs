@@ -197,6 +197,33 @@
     var intentLabels = { demo: 'Book a demo', quote: 'Get a quote', question: 'Ask a question' };
     var attempted = false;
     var phase = 'idle';
+    /* Bot check (Cloudflare Turnstile). Off unless the form carries a site key; the widget script is only loaded then. */
+    var siteKey = form.getAttribute('data-turnstile-sitekey') || '';
+    var tsToken = null;
+    var tsWidget = null;
+    if (siteKey) {
+      var tsBox = $('#turnstile-box');
+      if (tsBox) {
+        tsBox.hidden = false;
+        window.__ascendTurnstileReady = function () {
+          tsWidget = window.turnstile.render(tsBox, {
+            sitekey: siteKey,
+            callback: function (t) { tsToken = t; },
+            'expired-callback': function () { tsToken = null; },
+            'error-callback': function () { tsToken = null; }
+          });
+        };
+        var tsScript = document.createElement('script');
+        tsScript.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__ascendTurnstileReady';
+        tsScript.async = true;
+        tsScript.defer = true;
+        document.head.appendChild(tsScript);
+      }
+    }
+    function resetCheck() {
+      tsToken = null;
+      if (tsWidget !== null && window.turnstile) window.turnstile.reset(tsWidget);
+    }
 
     var summary = $('#form-summary');
     var errorBox = $('#form-error');
@@ -359,11 +386,19 @@
         return;
       }
 
+      if (siteKey && !tsToken) {
+        setPhase('error', 'Please complete the security check above, then send again.');
+        errorBox.focus();
+        return;
+      }
       setPhase('loading');
       if (!endpoint) { window.setTimeout(function () { mailFallback(v); }, 300); return; }
 
-      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payloadFor(v)) })
+      var headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+      if (tsToken) headers['X-Turnstile-Token'] = tsToken;
+      fetch(endpoint, { method: 'POST', headers: headers, body: JSON.stringify(payloadFor(v)) })
         .then(function (r) {
+          resetCheck(); // a token works once
           if (r.status === 202 || r.ok) { setPhase('idle'); showSuccess('api', v); return; }
           if (r.status === 503) { mailFallback(v); return; }          // email unavailable on the server: hand over to the visitor's email app
           if (r.status === 429) {
