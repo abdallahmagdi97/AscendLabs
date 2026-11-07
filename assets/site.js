@@ -9,6 +9,20 @@
   function $$(s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); }
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Cookieless analytics (Vercel Web Analytics: no cookies, no personal data) ---------- */
+  // The stub queues events until Vercel's script (loaded with defer on each page) is ready. Only the page, the product
+  // and the action are sent; nothing typed into a form ever is.
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  function track(name, data) {
+    try { window.va('event', { name: name, data: data || {} }); } catch (err) { /* analytics must never break the page */ }
+  }
+  doc.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href*="contact.html"]');
+    if (!link) return;
+    var product = (link.getAttribute('href').match(/[?&]product=([a-z]+)/) || [])[1] || 'general';
+    track('demo_click', { page: location.pathname, product: product });
+  });
+
   /* ---------- Header dropdowns (Products, Sign in) ---------- */
   (function () {
     var wrap = $('[data-header]');
@@ -315,6 +329,7 @@
         body.appendChild(b);
         body.appendChild(doc.createTextNode('. In the meantime, you can explore the products.'));
       }
+      track('form_success', { page: location.pathname, mode: mode });
       form.hidden = true;
       successBox.hidden = false;
       announce(mode === 'mail' ? 'Your email app should open with your message.' : 'Message sent. We will reply to ' + v.email + '.');
