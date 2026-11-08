@@ -494,4 +494,13 @@
     });
     if (location.hash) window.setTimeout(sweep, 50);
   })();
+  /* Founder's Club places left, read from the server. The page shows a plain phrase when the server cannot be reached. */
+  (function () {
+    var out = $('[data-founders-count]');
+    if (!out || !window.fetch) return;
+    fetch('https://ascend-labs-crm-backend-production.up.railway.app/api/billing/founders-club', { credentials: 'omit' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('unavailable')); })
+      .then(function (d) { out.textContent = d.available ? d.remaining + ' of ' + d.cap : 'not open right now'; })
+      .catch(function () { out.textContent = 'while places last'; });
+  })();
 })();
