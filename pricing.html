@@ -89,7 +89,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="assets/site.css?v=062cd474">
-<script src="assets/site.js?v=d3680cd4" defer></script>
+<script src="assets/site.js?v=acb005b9" defer></script>
 <noscript><style>html .price-panel[hidden] { display: block !important; }</style></noscript>
 </head>
 <body>
@@ -192,7 +192,7 @@
 <p class="lede-18" style="max-width:600px">Ascend CRM is priced per firm. Ascend Agent is priced per agent. Prices in USD; local taxes may apply.</p>
 <div class="seg-row" data-pricing-controls>
 <div role="tablist" aria-label="Product" class="seg seg-dark">
-<button type="button" role="tab" id="tab-crm" data-tab="crm" aria-selected="true" aria-controls="crm" tabindex="0">Ascend CRM</button><button type="button" role="tab" id="tab-agent" data-tab="agent" aria-selected="false" aria-controls="agent" tabindex="-1">Ascend Agent</button>
+<button type="button" role="tab" id="tab-crm" data-tab="crm" aria-selected="true" aria-controls="crm" tabindex="0">Ascend CRM</button><button type="button" role="tab" id="tab-agent" data-tab="agent" aria-selected="false" aria-controls="agent" tabindex="-1">Ascend Agent</button><button type="button" role="tab" id="tab-email" data-tab="email" aria-selected="false" aria-controls="email" tabindex="-1">Email campaigns</button><button type="button" role="tab" id="tab-whatsapp" data-tab="whatsapp" aria-selected="false" aria-controls="whatsapp" tabindex="-1">WhatsApp</button>
 </div>
 <div role="group" aria-label="Billing period" class="seg seg-blue">
 <button type="button" data-period="monthly" aria-pressed="true">Monthly</button>
@@ -294,6 +294,73 @@
 </article>
 </div>
 <p class="fine cmp-note" style="text-align:center">Your firm uses Ascend CRM? Add Ascend Agent for your own follow-ups and campaigns.</p>
+</div>
+</div>
+<!-- DRAFT COPY: Email and WhatsApp prices, notes and features are for founder approval before this page is published. -->
+<div id="email" class="price-panel" role="tabpanel" aria-labelledby="tab-email" tabindex="0" hidden>
+<h2 class="sr-only">Email campaigns plans</h2>
+<div class="info-note founding" role="note"><span><b>Founder's Club:</b> Email Growth at $39 a month for 12 months, then $49 a month with 30 days' notice. First 100 eligible customers. Places left: <span data-founders-count>checking</span>.</span></div>
+<div class="plans-grid wide plans-3">
+<article class="plan">
+
+<div class="plan-head"><h3 class="plan-name">Email Starter</h3></div>
+<p class="plan-desc">For teams starting email campaigns</p>
+<div class="plan-pricing"><div class="pv pv-monthly"><span class="plan-price">$19</span><span class="plan-unit"> / month</span></div><div class="pv pv-yearly"><span class="plan-price">$190</span><span class="plan-unit"> / year</span></div><div class="plan-note">per business, not per user</div></div>
+<a href="contact.html?product=email&amp;intent=demo" class="btn btn-secondary">Book a demo</a>
+<p class="plan-trial">Billed by invoice until online checkout opens.</p>
+<ul class="plan-points"><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>5,000 emails a month</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Templates, preview and test sends</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Contact lists, suppression and unsubscribe handling</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Delivery, bounce and unsubscribe reports</span></li></ul>
+</article>
+<article class="plan plan-featured">
+<span class="plan-flag">Most popular</span>
+<div class="plan-head"><h3 class="plan-name">Email Growth</h3></div>
+<p class="plan-desc">For growing teams sending regular campaigns</p>
+<div class="plan-pricing"><div class="pv pv-monthly"><span class="plan-price">$49</span><span class="plan-unit"> / month</span></div><div class="pv pv-yearly"><span class="plan-price">$490</span><span class="plan-unit"> / year</span></div><div class="plan-note">per business, not per user</div></div>
+<a href="contact.html?product=email&amp;intent=demo" class="btn btn-primary">Book a demo</a>
+<p class="plan-trial">Billed by invoice until online checkout opens.</p>
+<ul class="plan-points"><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>25,000 emails a month</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Everything in Starter</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Campaign scheduling and reports</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Founder's Club offer for the first 100 eligible customers (see note above)</span></li></ul>
+</article>
+<article class="plan">
+
+<div class="plan-head"><h3 class="plan-name">Email Business</h3></div>
+<p class="plan-desc">For larger lists and busy senders</p>
+<div class="plan-pricing"><div class="pv pv-monthly"><span class="plan-price">$99</span><span class="plan-unit"> / month</span></div><div class="pv pv-yearly"><span class="plan-price">$990</span><span class="plan-unit"> / year</span></div><div class="plan-note">per business, not per user</div></div>
+<a href="contact.html?product=email&amp;intent=demo" class="btn btn-secondary">Book a demo</a>
+<p class="plan-trial">Billed by invoice until online checkout opens.</p>
+<ul class="plan-points"><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>50,000 emails a month</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Everything in Growth</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Priority support</span></li></ul>
+</article>
+</div>
+</div>
+<div id="whatsapp" class="price-panel" role="tabpanel" aria-labelledby="tab-whatsapp" tabindex="0" hidden>
+<h2 class="sr-only">WhatsApp plans</h2>
+<p class="fine cmp-note"><b>Meta fees:</b> Meta charges its own fees for WhatsApp conversations. Meta bills those directly; they are not included in these prices.</p>
+<div class="plans-grid wide plans-3">
+<article class="plan">
+
+<div class="plan-head"><h3 class="plan-name">WhatsApp Essentials</h3></div>
+<p class="plan-desc">For one number and a small team</p>
+<div class="plan-pricing"><div class="pv pv-monthly"><span class="plan-price">$29</span><span class="plan-unit"> / month</span></div><div class="pv pv-yearly"><span class="plan-price">$290</span><span class="plan-unit"> / year</span></div><div class="plan-note">per business, not per user</div></div>
+<a href="contact.html?product=whatsapp&amp;intent=demo" class="btn btn-secondary">Book a demo</a>
+<p class="plan-trial">Billed by invoice until online checkout opens.</p>
+<ul class="plan-points"><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>1 WhatsApp number</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>2 team members</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Templates and scheduled campaigns</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Delivery status reports</span></li></ul>
+</article>
+<article class="plan plan-featured">
+<span class="plan-flag">Most popular</span>
+<div class="plan-head"><h3 class="plan-name">WhatsApp Growth</h3></div>
+<p class="plan-desc">For several numbers and a larger team</p>
+<div class="plan-pricing"><div class="pv pv-monthly"><span class="plan-price">$59</span><span class="plan-unit"> / month</span></div><div class="pv pv-yearly"><span class="plan-price">$590</span><span class="plan-unit"> / year</span></div><div class="plan-note">per business, not per user</div></div>
+<a href="contact.html?product=whatsapp&amp;intent=demo" class="btn btn-primary">Book a demo</a>
+<p class="plan-trial">Billed by invoice until online checkout opens.</p>
+<ul class="plan-points"><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>3 WhatsApp numbers</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>5 team members</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Everything in Essentials</span></li></ul>
+</article>
+<article class="plan">
+
+<div class="plan-head"><h3 class="plan-name">WhatsApp Business</h3></div>
+<p class="plan-desc">For many numbers and larger teams</p>
+<div class="plan-pricing"><div class="pv pv-monthly"><span class="plan-price">$99</span><span class="plan-unit"> / month</span></div><div class="pv pv-yearly"><span class="plan-price">$990</span><span class="plan-unit"> / year</span></div><div class="plan-note">per business, not per user</div></div>
+<a href="contact.html?product=whatsapp&amp;intent=demo" class="btn btn-secondary">Book a demo</a>
+<p class="plan-trial">Billed by invoice until online checkout opens.</p>
+<ul class="plan-points"><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>10 WhatsApp numbers</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>15 team members</span></li><li><svg class="check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Everything in Growth</span></li></ul>
+</article>
 </div>
 </div>
 </section>
