@@ -58,6 +58,9 @@
   --font-body: Inter, system-ui, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --ease: cubic-bezier(.2, 0, 0, 1);
+
+  /* WhatsApp's own brand green: a third-party mark colour, identical on every surface. */
+  --whatsapp: #25D366;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -744,3 +747,10 @@ html:not(.js) .faq-sign { display: none; }
 .signin-top a:last-child { display: inline-flex; align-items: center; min-height: 44px; }
 .cmp, .table-card { position: relative; }
 .signin-top a:first-child { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* The WhatsApp logo mark, always in WhatsApp's own green. */
+.wa-ico, .check.wa-ico { color: var(--whatsapp); flex: none; vertical-align: -3px; }
+.seg button .wa-ico { margin-inline-end: 6px; }
+.plan-name .wa-ico { margin-inline-end: 8px; vertical-align: -4px; }
+.reasons a .wa-ico, .aside-note .wa-ico { margin-inline-end: 4px; }
+.feat .ico .wa-ico { vertical-align: 0; }
