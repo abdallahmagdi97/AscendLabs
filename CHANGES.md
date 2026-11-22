@@ -1,3 +1,14 @@
+# Changes: the real Ascend logo, A-arrow in Electric Blue
+
+Branch `feature/ascend-logo`. The founder asked for the real logo everywhere, with the A-arrow in Electric Blue #2F6BFF, consistent across products.
+- **Header, mobile menu and home "suite" card:** `assets/ascend-logo-dark.png`, the blue A with Sand lettering. It replaces the Sand wordmark, and the 404 page's blue one.
+- **Footer:** `assets/ascend-mark.png`, the blue A, no longer on a Sand tile.
+- **Product tiles:** the letter placeholders (C, B, D, A) are now the blue A with a small product label: CRM, Broker, Developer or Agent (`.pi.pi-brand`). The illustrative app mock-up shows the blue A too.
+- **Icons:** `favicon.ico`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` and `icon-192`/`icon-512` (manifest), all with the blue A. The touch and app icons sit on Charcoal.
+- **JSON-LD logo:** `assets/ascend-logo-light.png`, the blue A with Charcoal lettering.
+- **Old files** (`logo-wordmark*.png`, `logo-mark.png`) are no longer referenced; only the unlinked `project.html` uses `logo.png`. New file names, plus new `?v=` hashes, mean the immutable asset cache cannot keep showing the old artwork.
+- **Not changed:** `og-image.png` (the social share image). It needs a redesign with the new logo.
+
 # Changes: Ascend Broker CRM and Ascend Developer CRM
 
 Branch `feature/crm-business-models`. Source: the founder's Broker/Developer CRM PRD of 22 Nov and ADR-003 in the backend's `docs/crm-business-models` (one app host, two product pages).
