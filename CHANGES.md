@@ -6,6 +6,11 @@ Branch `feature/checkout-page`. The founder wants buyers to pay on Ascend's own 
 - **After paying:** the page asks the backend for the session status every 2 seconds for up to a minute. Only Paymob's verified callback marks it paid.
 - **Steps recorded:** opened, consent ticked, card form shown, Pay pressed, a failure reported by Pixel, and leaving the page (with seconds on the page). No card data or typed text.
 - **`vercel.json`:** `/checkout` rewrites to `checkout.html`. The checkout page alone gets a wider Content-Security-Policy for Pixel: `cdn.jsdelivr.net` scripts, `*.paymob.com` connections and images, and any `https:` frame or form for the bank's 3-D Secure step, whose host depends on the card's bank. It also gets `Cache-Control: no-store`. Every other page keeps the site-wide policy.
+- **Pricing:**
+  - Every self-serve plan now has a "Buy now" button: Broker CRM Starter, Growth and Business; Email Starter, Growth and Business; WhatsApp Essentials, Growth and Business. Each goes to its app's `/checkout/start` with the plan and the monthly or yearly choice, and the app creates the checkout session after sign-in.
+  - "Book a demo" stays below each button as a link. The "Billed by invoice until online checkout opens" line is removed from those plans.
+  - The "How do I pay today?" FAQ (page and JSON-LD) now says card on the checkout page, or an invoice on request.
+  - Ascend Agent, Developer CRM and Custom are unchanged; they have no self-serve plan.
 - **Still to check on the deployed site:** how the bank step appears, and whether the CSP blocks anything Pixel needs.
 
 # Changes: Email and WhatsApp prices approved

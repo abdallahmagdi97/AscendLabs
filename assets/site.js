@@ -135,6 +135,11 @@
     function setPeriod(p) {
       root.setAttribute('data-billing', p);
       periods.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-period') === p ? 'true' : 'false'); });
+      // Buy now goes to the plan's app, which creates a checkout session for the chosen period after sign-in.
+      $$('a[data-buy]').forEach(function (a) {
+        a.href = a.getAttribute('data-app') + '/checkout/start?product=' + encodeURIComponent(a.getAttribute('data-product')) +
+          '&plan=' + encodeURIComponent(a.getAttribute('data-plan')) + '&interval=' + (p === 'yearly' ? 'year' : 'month');
+      });
     }
     tabs.forEach(function (t, i) {
       t.addEventListener('click', function () { selectTab(t.getAttribute('data-tab')); });
