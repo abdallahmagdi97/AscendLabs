@@ -1,3 +1,19 @@
+# Changes: "Start free" paths to the open sign-ups
+
+Branch `feature/start-free` (growth programme G-01, backend `docs/growth`). CRM and Campaigns sign-up were open in production, but the site only offered "Book a demo" and said sign-up opens in January.
+- **Header** on every page: "Start free" (primary, to `products.html#start`) and "Book a demo" (secondary). The narrow-screen header button and the mobile menu lead with "Start free".
+- **`products.html#start`:** a new "Start free" section with Broker CRM (`app.ascend-labs.cc/signup?model=broker`), Developer CRM (`?model=developer`) and Campaigns (`campaigns.ascend-labs.cc/signup`).
+- **Product pages:**
+  - Broker CRM and Developer CRM: hero and closing band start with "Start free".
+  - Agent: "Try Campaigns free", since Campaigns is the live part of the bundle.
+  - CRM chooser cards: a "Start free" link on each.
+- **Removed claims that were no longer true:** "Self-serve sign-up opens in January" and "Card payments open with self-serve sign-up".
+- **Attribution:** sign-up links (`a[data-signup]`) carry the visitor's first-touch `utm_source/medium/campaign` from `sessionStorage`, so the apps record where sign-ups came from.
+- **Not changed (waiting on the founder):**
+  - the founding-offer wording, which conflicts with the backend;
+  - the DRAFT COPY email/WhatsApp prices;
+  - the "14-day free trial, no card" claim, which depends on whether production runs the trial.
+
 # Changes: the real Ascend logo, A-arrow in Electric Blue
 
 Branch `feature/ascend-logo`. The founder asked for the real logo everywhere, with the A-arrow in Electric Blue #2F6BFF, consistent across products.

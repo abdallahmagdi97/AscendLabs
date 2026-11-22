@@ -184,6 +184,20 @@
     } catch (e) { /* storage blocked: attribution is optional */ }
   })();
 
+  /* ---------- Sign-up links carry the visitor's UTM values to the app, so sign-ups can be counted by source ---------- */
+  (function () {
+    var attr = readAttr();
+    var pairs = [['utm_source', 'utmSource'], ['utm_medium', 'utmMedium'], ['utm_campaign', 'utmCampaign']];
+    if (!pairs.some(function (p) { return attr[p[1]]; })) return;
+    $$('a[data-signup]').forEach(function (a) {
+      try {
+        var u = new URL(a.href);
+        pairs.forEach(function (p) { if (attr[p[1]] && !u.searchParams.has(p[0])) u.searchParams.set(p[0], attr[p[1]]); });
+        a.href = u.toString();
+      } catch (e) { /* leave the link as it is */ }
+    });
+  })();
+
   /* ---------- Contact form ---------- */
   (function () {
     var form = $('#contact-form');
