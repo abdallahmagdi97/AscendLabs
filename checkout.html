@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure checkout — Ascend Labs</title>
+<meta name="description" content="Pay for your Ascend plan. Payments are processed by Paymob.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1E1E1C">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5850a313">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=64bcdf29">
+<link rel="stylesheet" href="assets/checkout.css?v=64c215ac">
+<script src="https://cdn.jsdelivr.net/npm/paymob-pixel@1.2.10/main.js" type="module" integrity="sha384-F6sDU0VqY19wOdum9m+x9Lu0Oofjx2ax27IPa0oqPYGRQutGaPhkF53XjJmu/aWm" crossorigin="anonymous"></script>
+<script src="assets/checkout.js?v=e7221054" type="module"></script>
+</head>
+<body class="checkout-body">
+<header class="checkout-header">
+<div class="checkout-wrap checkout-header-inner">
+<img src="assets/ascend-logo-dark.png?v=ae05894d" alt="Ascend Labs" width="148" height="28">
+<span class="checkout-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Secure checkout</span>
+</div>
+</header>
+
+<main id="main" class="checkout-wrap checkout-main" tabindex="-1">
+<div class="checkout-banner" data-test-mode hidden role="note">Test mode: payments use test cards and no real money is charged.</div>
+
+<section data-view="loading" class="checkout-card"><p class="checkout-muted">Loading your checkout…</p></section>
+
+<section data-view="invalid" class="checkout-card" hidden>
+<h1 class="checkout-title">This checkout link is not valid.</h1>
+<p class="checkout-muted">Start again from your Ascend account.</p>
+</section>
+
+<section data-view="expired" class="checkout-card" hidden>
+<h1 class="checkout-title">This checkout link has expired.</h1>
+<p class="checkout-muted">Nothing was charged. Start again from your account to choose your plan.</p>
+<a class="btn btn-primary" data-return href="#">Back to Ascend</a>
+</section>
+
+<section data-view="paid" class="checkout-card" hidden>
+<h1 class="checkout-title">Payment received, your plan is active.</h1>
+<p class="checkout-muted">A receipt is on its way to your email.</p>
+<a class="btn btn-primary" data-return href="#">Back to Ascend</a>
+</section>
+
+<section data-view="checkout" class="checkout-card" hidden>
+<h1 class="checkout-title" data-plan-name></h1>
+<dl class="checkout-summary">
+<div><dt>Price</dt><dd data-usd></dd></div>
+<div><dt>You pay</dt><dd data-egp></dd></div>
+</dl>
+<p class="checkout-muted checkout-small" data-rate></p>
+
+<div class="checkout-fields">
+<div class="checkout-field"><span class="checkout-label">Name</span><span data-buyer-name></span></div>
+<div class="checkout-field"><span class="checkout-label">Email</span><span data-buyer-email></span></div>
+<label class="checkout-field" for="phone"><span class="checkout-label">Phone</span><input id="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+</div>
+
+<label class="checkout-consent"><input type="checkbox" data-consent> <span>I agree that Ascend Labs may keep my card on file and charge it for my plan at each renewal. The amount in EGP is set by the exchange rate on the day of each charge, so it can differ slightly from one charge to the next.</span></label>
+
+<p class="checkout-error" data-error role="alert" hidden></p>
+<button type="button" class="btn btn-primary checkout-continue" data-continue>Continue to card</button>
+
+<div class="checkout-pay" data-pay hidden>
+<div id="pixel"></div>
+</div>
+<p class="checkout-muted checkout-small" data-confirming hidden role="status">Confirming your payment…</p>
+</section>
+
+<p class="checkout-foot">Payments are processed by Paymob. Ascend never sees your card.</p>
+</main>
+</body>
+</html>

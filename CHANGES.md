@@ -1,3 +1,28 @@
+# Changes: the Ascend checkout page
+
+Branch `feature/checkout-page`. The founder wants buyers to pay on Ascend's own page instead of leaving for Paymob's hosted checkout. The design is in the backend repo, at `docs/superpowers/specs/2026-11-22-own-checkout-design.md`.
+- **`/checkout`** (`checkout.html`, `assets/checkout.js`, `assets/checkout.css`): reads `?s=<session>` from the backend and shows the plan, the price and the EGP amount at the CBE rate. It shows the buyer's name and email (read-only), the phone (editable), the card-on-file consent (the same sentence as Campaigns) and, while Paymob is in sandbox, a test-mode banner.
+- **Card form:** "Continue to card" opens Paymob's embedded card form, Pixel `paymob-pixel@1.2.10` (published 27 Oct 2026, pinned). The card is saved for renewals (`forceSaveCard`, after the buyer's consent).
+- **After paying:** the page asks the backend for the session status every 2 seconds for up to a minute. Only Paymob's verified callback marks it paid.
+- **Steps recorded:** opened, consent ticked, card form shown, Pay pressed, a failure reported by Pixel, and leaving the page (with seconds on the page). No card data or typed text.
+- **`vercel.json`:** `/checkout` rewrites to `checkout.html`. The checkout page alone gets a wider Content-Security-Policy for Pixel: `cdn.jsdelivr.net` scripts, `*.paymob.com` connections and images, and any `https:` frame or form for the bank's 3-D Secure step, whose host depends on the card's bank. It also gets `Cache-Control: no-store`. Every other page keeps the site-wide policy.
+- **Pricing:**
+  - Every self-serve plan now has a "Buy now" button: Broker CRM Starter, Growth and Business; Email Starter, Growth and Business; WhatsApp Essentials, Growth and Business. Each goes to its app's `/checkout/start` with the plan and the monthly or yearly choice, and the app creates the checkout session after sign-in.
+  - "Book a demo" stays below each button as a link. The "Billed by invoice until online checkout opens" line is removed from those plans.
+  - The "How do I pay today?" FAQ (page and JSON-LD) now says card on the checkout page, or an invoice on request.
+  - Ascend Agent, Developer CRM and Custom are unchanged; they have no self-serve plan.
+- **After the final review:**
+  - The page reads the session id even when Paymob appends its result with "?".
+  - Returning from the bank with a declined payment shows "did not go through".
+  - "Continue" is hidden while the page confirms a payment.
+  - `page_left` is sent at most once per page, and never while a payment is under way (the bank's SMS, the 3-D Secure redirect).
+  - The Pixel script carries an integrity hash (`sha384-F6sD…`, checked against both npm and jsDelivr), and `script-src` allows only `cdn.jsdelivr.net/npm/paymob-pixel@1.2.10/`.
+- **Go-live gates (sandbox, deployed site):**
+  - The card fields must sit inside a Paymob-origin frame. Otherwise card data would be in Ascend's page, which is a PCI scope change for the founder to decide.
+  - The real 3-D Secure return format.
+  - No CSP violations.
+- **Still to check on the deployed site:** how the bank step appears, and whether the CSP blocks anything Pixel needs.
+
 # Changes: Email and WhatsApp prices approved
 
 Branch `feature/prices-approved`. The founder approved the Email and WhatsApp prices, notes and features on the pricing page (22 Nov 2026), so the "DRAFT COPY" marker is removed. Nothing visible changes. The "preview draft" notices on the legal pages stay until legal review.
