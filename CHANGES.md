@@ -11,6 +11,16 @@ Branch `feature/checkout-page`. The founder wants buyers to pay on Ascend's own 
   - "Book a demo" stays below each button as a link. The "Billed by invoice until online checkout opens" line is removed from those plans.
   - The "How do I pay today?" FAQ (page and JSON-LD) now says card on the checkout page, or an invoice on request.
   - Ascend Agent, Developer CRM and Custom are unchanged; they have no self-serve plan.
+- **After the final review:**
+  - The page reads the session id even when Paymob appends its result with "?".
+  - Returning from the bank with a declined payment shows "did not go through".
+  - "Continue" is hidden while the page confirms a payment.
+  - `page_left` is sent at most once per page, and never while a payment is under way (the bank's SMS, the 3-D Secure redirect).
+  - The Pixel script carries an integrity hash (`sha384-F6sD…`, checked against both npm and jsDelivr), and `script-src` allows only `cdn.jsdelivr.net/npm/paymob-pixel@1.2.10/`.
+- **Go-live gates (sandbox, deployed site):**
+  - The card fields must sit inside a Paymob-origin frame. Otherwise card data would be in Ascend's page, which is a PCI scope change for the founder to decide.
+  - The real 3-D Secure return format.
+  - No CSP violations.
 - **Still to check on the deployed site:** how the bank step appears, and whether the CSP blocks anything Pixel needs.
 
 # Changes: Email and WhatsApp prices approved

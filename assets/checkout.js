@@ -3,7 +3,13 @@
 // verified Paymob callback marks a session paid; the page never decides that itself. Card data stays inside Paymob's form.
 
 const API = 'https://ascend-labs-crm-backend-production.up.railway.app/api/billing/checkout-sessions/';
-const id = new URLSearchParams(location.search).get('s') || '';
+const params = new URLSearchParams(location.search);
+// Paymob appends its result to the return address; if it starts with "?" the session id would carry it, so cut it off.
+const id = (params.get('s') || '').split('?')[0];
+// Back from the bank's check: Paymob adds the transaction id (id=…) to the address, in either form.
+const backFromBank = params.has('id') || /[?&]id=/.test((params.get('s') || ''));
+let paying = false; // the card form is in use: hiding the tab (the bank's SMS, a redirect) is not leaving checkout
+let leftSent = false;
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const openedAt = Date.now();
@@ -73,7 +79,11 @@ async function load() {
   if (v.status === 'expired' || v.status === 'paid') return;
   step('page_opened');
   // Back from the bank's check (a redirect), or the page was reloaded mid-payment: wait for Paymob's confirmation.
-  if (v.status === 'paying' && new URLSearchParams(location.search).has('id')) poll();
+  if (backFromBank && v.status === 'paying') poll();
+  if (backFromBank && v.status === 'failed') {
+    setError('The payment did not go through. You can try again.');
+    $('[data-continue]').textContent = 'Try again';
+  }
 }
 
 async function start() {
@@ -122,6 +132,7 @@ function mountPixel(credentials) {
     // The buyer agreed to keep the card on file above; renewals charge it.
     forceSaveCard: true,
     beforePaymentComplete: async () => {
+      paying = true;
       step('pay_pressed');
       return true;
     },
@@ -151,7 +162,9 @@ let polling = false;
 async function poll() {
   if (polling) return;
   polling = true;
+  paying = true;
   $('[data-confirming]').hidden = false;
+  $('[data-continue]').hidden = true;
   const until = Date.now() + 60000;
   while (Date.now() < until) {
     try {
@@ -168,6 +181,7 @@ async function poll() {
           button.disabled = false;
           button.textContent = 'Try again';
           polling = false;
+          paying = false;
           return;
         }
         if (status === 'expired') { settled = true; show('expired'); polling = false; return; }
@@ -186,7 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function left() {
-  if (settled || !session) return;
+  if (settled || paying || leftSent || !session) return;
+  leftSent = true;
   step('page_left', 'seconds=' + Math.round((Date.now() - openedAt) / 1000));
 }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') left(); });
