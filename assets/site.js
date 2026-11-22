@@ -515,7 +515,11 @@
     if (!out || !window.fetch) return;
     fetch('https://ascend-labs-crm-backend-production.up.railway.app/api/billing/founders-club', { credentials: 'omit' })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('unavailable')); })
-      .then(function (d) { if (d.available && d.remaining > 0) out.textContent = d.remaining + ' of ' + d.cap; })
+      .then(function (d) {
+        if (d.available && d.remaining > 0) out.textContent = d.remaining + ' of ' + d.cap;
+        else if (d.available) out.textContent = 'none, the club is full';
+        else out.textContent = 'while places last';
+      })
       .catch(function () { out.textContent = 'while places last'; });
   })();
 })();
