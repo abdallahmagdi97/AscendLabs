@@ -1,3 +1,7 @@
+# Changes: Email and WhatsApp prices approved
+
+Branch `feature/prices-approved`. The founder approved the Email and WhatsApp prices, notes and features on the pricing page (22 Nov 2026), so the "DRAFT COPY" marker is removed. Nothing visible changes. The "preview draft" notices on the legal pages stay until legal review.
+
 # Changes: one founding offer, the Founder's Club
 
 Branch `feature/founders-club` (growth programme G-02, backend `docs/growth`). The founder chose the backend's Founder's Club as the only founding offer: Ascend Campaigns Email Growth at $39 a month instead of $49 for the first 12 months, 100 places, one per organisation, monthly billing.
