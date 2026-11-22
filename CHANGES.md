@@ -1,3 +1,12 @@
+# Changes: one founding offer, the Founder's Club
+
+Branch `feature/founders-club` (growth programme G-02, backend `docs/growth`). The founder chose the backend's Founder's Club as the only founding offer: Ascend Campaigns Email Growth at $39 a month instead of $49 for the first 12 months, 100 places, one per organisation, monthly billing.
+- **Removed:** the "50% off your first year on yearly plans, for the first 50 firms and the first 200 agents, until 31 March 2027" notes on the CRM and Agent tabs, which no backend promotion supports.
+- **Email tab:** the note and the Email Growth bullet describe the Founder's Club exactly as the backend sells it, without the vague "first 100 eligible customers".
+- **FAQ** (page and JSON-LD): "What is the Founder's Club?" replaces the 50% answer.
+- **Places left:** reads `/api/billing/founders-club`. It shows "N of 100", "none, the club is full", or "while places last" when the server has no club yet. Before, it stayed stuck on "checking" when the server said "not available". `site.js?v=` bumped on every page.
+- **Not changed:** the DRAFT COPY Email/WhatsApp prices, still waiting on the founder's approval.
+
 # Changes: "Start free" paths to the open sign-ups
 
 Branch `feature/start-free` (growth programme G-01, backend `docs/growth`). CRM and Campaigns sign-up were open in production, but the site only offered "Book a demo" and said sign-up opens in January.
