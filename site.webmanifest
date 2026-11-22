@@ -1,7 +1,7 @@
 {
   "name": "Ascend Labs",
   "short_name": "Ascend",
-  "description": "Sales software for real estate. Ascend CRM for firms, Ascend Agent for agents.",
+  "description": "Sales software for real estate. Ascend Broker CRM and Ascend Developer CRM for firms, Ascend Agent for agents.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#1E1E1C",

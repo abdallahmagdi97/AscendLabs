@@ -193,7 +193,7 @@
     var mailTo = form.getAttribute('data-mailto') || '';
     var fields = ['name', 'email', 'company', 'role', 'product', 'intent', 'message'];
     var roleLabels = { brokerage_or_developer: 'Brokerage or developer (Ascend CRM)', sales_agent: 'Sales agent (Ascend Agent)' };
-    var productLabels = { crm: 'Ascend CRM', agent: 'Ascend Agent', bundle: 'Both', other: 'Not sure yet' };
+    var productLabels = { 'broker-crm': 'Ascend Broker CRM', 'developer-crm': 'Ascend Developer CRM', agent: 'Ascend Agent', bundle: 'More than one', other: 'Not sure yet' };
     var intentLabels = { demo: 'Book a demo', quote: 'Get a quote', question: 'Ask a question' };
     var attempted = false;
     var phase = 'idle';
@@ -360,12 +360,13 @@
       input.addEventListener('change', handler);
     });
 
-    // Preselect from ?product=crm|agent|bundle|other and ?intent=demo|quote|question.
-    // (?product=campaigns is an old link; that tool is now part of Ascend Agent.)
+    // Preselect from ?product=broker-crm|developer-crm|agent|bundle|other and ?intent=demo|quote|question.
+    // Old links: ?product=crm was the single CRM, now Broker CRM; campaigns, email and whatsapp are part of Ascend Agent.
     try {
       var params = new URLSearchParams(window.location.search);
       var qp = params.get('product');
-      if (qp === 'campaigns') qp = 'agent';
+      if (qp === 'crm') qp = 'broker-crm';
+      if (qp === 'campaigns' || qp === 'email' || qp === 'whatsapp') qp = 'agent';
       if (qp && productLabels[qp]) el('product').value = qp;
       var qi = params.get('intent');
       if (qi && intentLabels[qi]) el('intent').value = qi;

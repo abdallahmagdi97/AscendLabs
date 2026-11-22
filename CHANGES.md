@@ -1,3 +1,35 @@
+# Changes: Ascend Broker CRM and Ascend Developer CRM
+
+Branch `feature/crm-business-models`. Source: the founder's Broker/Developer CRM PRD of 22 Nov and ADR-003 in the backend's `docs/crm-business-models` (one app host, two product pages).
+
+## What changed
+
+**Content and structure**
+- `crm.html` is now the chooser ("Two CRMs. One platform."), with links to both product pages. Its URL is kept, so old links keep working.
+- `broker-crm.html`: new. It carries the brokerage content that was on `crm.html`.
+- `developer-crm.html`: new.
+  - "Available today" lists the shared modules that work now: leads and buyers, assignment, first-response tracking, meetings and site visits, roles, HR.
+  - "Coming next" covers projects, units, pricing and payment plans, reservations, contracts, broker network and dashboard. Each carries the "Coming soon" badge.
+  - Pricing is on request.
+- The Products menu (desktop and mobile) has three cards: Broker CRM (B), Developer CRM (D) and Agent. The footer lists both CRMs. The Sign-in menu and `sign-in.html` read "Ascend CRM — Broker & Developer". Both CRMs open at `app.ascend-labs.cc`, which shows the right product from the account.
+- The wording "brokerages and developer sales teams" is replaced everywhere (meta, JSON-LD, copy).
+- Pricing:
+  - The CRM tab is "Broker CRM" and its plans are unchanged.
+  - A note says Developer CRM is priced on request.
+  - The "Projects, units & payment plans" row is removed from the Broker comparison.
+- Contact form:
+  - Product options are Broker CRM, Developer CRM, Agent, "More than one" and "Not sure yet".
+  - Old links map as follows: `?product=crm` to Broker CRM; `campaigns`, `email` and `whatsapp` to Agent. The last two were a bug, since they preselected nothing.
+  - The backend accepts `broker-crm` and `developer-crm` from the same release.
+
+**Technical**
+- `.menu-grid` has three columns, so `site.css` and `site.js` have new `?v=` hashes on every page.
+- `sitemap.xml` lists the two new pages, and every `lastmod` is 2026-11-22. `site.webmanifest` describes both CRMs.
+
+**Content I need from the founder**
+- Developer CRM pricing, once decided.
+- When each Developer CRM module ships, so its "Coming soon" badge can come off.
+
 # Changes: Ascend CRM + Ascend Agent site rewrite
 
 Branch `feature/crm-agent-split`. Source of truth for copy: the founder brief of 2 Nov. Where the brief and the product disagreed, the project owner's decisions below won.
