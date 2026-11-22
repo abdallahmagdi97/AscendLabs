@@ -155,6 +155,12 @@ button { font: inherit; color: inherit; }
   display: grid; place-items: center; background: var(--card-2); color: var(--sand); border: 1px solid var(--line-strong);
   font-weight: 700; font-size: calc(var(--s, 36px) * .39);
 }
+.pi.pi-brand {
+  width: auto; min-width: var(--s, 36px); padding: 0 calc(var(--s, 36px) * .22); gap: calc(var(--s, 36px) * .14);
+  display: inline-flex; align-items: center; justify-content: center; color: var(--fg); font-size: calc(var(--s, 36px) * .32);
+}
+.pi.pi-brand img { height: 58%; width: auto; display: block; }
+.pi.pi-brand small { font-size: inherit; font-weight: 650; letter-spacing: .01em; white-space: nowrap; }
 .pill { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--fg-2); }
 .pill-tag { padding: 3px 8px; border-radius: 999px; background: var(--accent-subtle); color: var(--accent-text); }
 .check { flex: none; margin-top: 2px; color: var(--accent-text); }
@@ -258,7 +264,7 @@ button { font: inherit; color: inherit; }
 .footer-top { display: flex; flex-wrap: wrap; gap: 40px; }
 .footer-brand { flex: 2 1 280px; display: flex; flex-direction: column; gap: 16px; max-width: 360px; }
 .footer-brand .row { display: inline-flex; align-items: center; gap: 10px; }
-.footer-brand .mark { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--sand); display: grid; place-items: center; }
+.footer-brand .mark { width: 36px; height: 36px; display: grid; place-items: center; }
 .footer-brand .mark img { width: 26px; height: auto; }
 .footer-brand .nm { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--fg); letter-spacing: -.01em; }
 .footer-brand p { line-height: 1.6; }
@@ -305,7 +311,7 @@ button { font: inherit; color: inherit; }
 .scr-body { display: flex; aspect-ratio: 16 / 9.4; font-size: 11px; background: var(--bg); }
 .scr-side { flex: 0 0 18%; background: var(--bg-2); border-right: 1px solid var(--line); padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .scr-brand { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.scr-brand i { width: 18px; height: 18px; border-radius: 5px; background: var(--sand); display: block; flex: none; }
+.scr-brand img { width: 18px; height: 18px; display: block; flex: none; }
 .scr-brand b { font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .scr-side span { padding: 5px 7px; border-radius: var(--radius-sm); color: var(--fg-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .scr-side span.on { background: var(--accent-subtle); color: var(--fg); font-weight: 600; box-shadow: inset 2px 0 0 var(--blue); }
