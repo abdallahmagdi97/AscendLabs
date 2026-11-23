@@ -79,7 +79,7 @@ function pixelStyle() {
     Radius_Border: '8',
     Width_of_Container: '100%',
     Container_Padding: '0',
-    Vertical_Padding: '0',
+    // Not Vertical_Padding: at 0 Paymob's card frame collapses to 4px and the fields disappear (found on the live page).
     Vertical_Spacing_between_components: '10',
     HideCardIcons: true,
     HideCardLabel: true,
