@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="assets/site.css?v=64bcdf29">
 <link rel="stylesheet" href="assets/checkout.css?v=64c215ac">
 <script src="https://cdn.jsdelivr.net/npm/paymob-pixel@1.2.10/main.js" type="module" integrity="sha384-F6sDU0VqY19wOdum9m+x9Lu0Oofjx2ax27IPa0oqPYGRQutGaPhkF53XjJmu/aWm" crossorigin="anonymous"></script>
-<script src="assets/checkout.js?v=e7221054" type="module"></script>
+<script src="assets/checkout.js?v=86b1c902" type="module"></script>
 </head>
 <body class="checkout-body">
 <header class="checkout-header">
@@ -41,18 +41,22 @@
 </section>
 
 <section data-view="paid" class="checkout-card" hidden>
-<h1 class="checkout-title">Payment received, your plan is active.</h1>
-<p class="checkout-muted">A receipt is on its way to your email.</p>
+<h1 class="checkout-title" data-paid-title>Payment received, your plan is active.</h1>
+<p class="checkout-muted" data-paid-note>Your plan is ready to use.</p>
 <a class="btn btn-primary" data-return href="#">Back to Ascend</a>
 </section>
 
 <section data-view="checkout" class="checkout-card" hidden>
 <h1 class="checkout-title" data-plan-name></h1>
-<dl class="checkout-summary">
+<div data-card-only hidden>
+<p class="checkout-muted" data-check-text></p>
+<p class="checkout-muted checkout-small" data-current-card></p>
+</div>
+<dl class="checkout-summary" data-purchase-only>
 <div><dt>Price</dt><dd data-usd></dd></div>
 <div><dt>You pay</dt><dd data-egp></dd></div>
 </dl>
-<p class="checkout-muted checkout-small" data-rate></p>
+<p class="checkout-muted checkout-small" data-rate data-purchase-only></p>
 
 <div class="checkout-fields">
 <div class="checkout-field"><span class="checkout-label">Name</span><span data-buyer-name></span></div>
