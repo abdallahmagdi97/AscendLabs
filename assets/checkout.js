@@ -16,6 +16,7 @@ const openedAt = Date.now();
 let settled = false; // paid or expired: leaving the page is no longer "leaving checkout"
 let session = null;
 let pixelShown = false;
+let cardUpdate = false; // this session replaces the saved card instead of buying a plan
 
 function show(view) {
   $$('[data-view]').forEach((el) => { el.hidden = el.getAttribute('data-view') !== view; });
@@ -44,12 +45,87 @@ function usd(minor) {
   return '$' + (minor / 100).toFixed(2);
 }
 
+function failedText() {
+  return cardUpdate
+    ? 'The payment did not go through. Your current card is still in use. You can try again.'
+    : 'The payment did not go through. You can try again.';
+}
+
+/**
+ * The look of Paymob's card form, one style for every use: dark surface and the site's own colours, a hairline border, 8px corners,
+ * Inter, no card-brand icons or heading, short plain placeholders and error texts. Pixel documents no single-line card row, so this is
+ * the quietest version of its own layout.
+ */
+function pixelStyle() {
+  return {
+    Font_Family: 'Inter',
+    Color_Primary: '#2D69FB',
+    Color_Container: '#262623',
+    Color_Input_Fields: '#1E1E1C',
+    Color_Border_Input_Fields: 'rgba(216,203,179,.30)',
+    Color_Border_Payment_Button: '#2D69FB',
+    Color_Disabled: 'rgba(216,203,179,.25)',
+    Color_Error: '#E57373',
+    Text_Color_For_Label: '#D8CBB3',
+    Text_Color_For_Input_Fields: '#D8CBB3',
+    Color_For_Text_Placeholder: 'rgba(216,203,179,.55)',
+    Text_Color_For_Payment_Button: '#FFFFFF',
+    Font_Size_Label: '13',
+    Font_Size_Input_Fields: '15',
+    Font_Size_Payment_Button: '15',
+    Font_Weight_Label: 500,
+    Font_Weight_Input_Fields: 400,
+    Font_Weight_Payment_Button: 600,
+    Radius_Border: '8',
+    Width_of_Container: '100%',
+    Container_Padding: '0',
+    Vertical_Padding: '0',
+    Vertical_Spacing_between_components: '10',
+    HideCardIcons: true,
+    HideCardLabel: true,
+    Placeholder_Text: { holderName: 'Name on card', cardNumber: 'Card number', expiryDate: 'MM / YY', securityCode: 'CVV' },
+    Error_Text: {
+      cardNumber: { required: 'Enter your card number', invalid: 'That card number does not look right' },
+      expiryDate: { required: 'Enter the expiry date', invalid: 'That date does not look right' },
+      securityCode: 'Enter the CVV',
+      holderName: 'Enter the name on the card',
+    },
+    Button_Text: { payBtn: cardUpdate ? 'Check and save card' : 'Pay' },
+  };
+}
+
 function render(v) {
   session = v;
   $$('[data-return]').forEach((a) => { a.href = v.returnUrl; });
   $('[data-test-mode]').hidden = !v.testMode;
+  cardUpdate = v.kind === 'card_update';
   if (v.status === 'expired') { settled = true; show('expired'); return; }
-  if (v.status === 'paid') { settled = true; show('paid'); return; }
+  if (v.status === 'paid') {
+    settled = true;
+    if (cardUpdate) {
+      $('[data-paid-title]').textContent = 'Your card is updated.';
+      $('[data-paid-note]').textContent = 'The ' + (v.egpAmount || 'small') + ' check is being refunded.';
+    }
+    show('paid');
+    return;
+  }
+
+  $$('[data-purchase-only]').forEach((el) => { el.hidden = cardUpdate; });
+  $$('[data-card-only]').forEach((el) => { el.hidden = !cardUpdate; });
+  if (cardUpdate) {
+    $('[data-plan-name]').textContent = 'Update your card';
+    $('[data-check-text]').textContent = 'We charge ' + (v.egpAmount || 'a small amount') + ' to check the new card, then refund it straight away. Your plan and renewal date do not change.';
+    $('[data-current-card]').textContent = v.currentCard
+      ? 'Current card: ' + v.currentCard.brand + ' ending ' + v.currentCard.last4 + ' · expires ' + String(v.currentCard.expiryMonth).padStart(2, '0') + '/' + String(v.currentCard.expiryYear).padStart(2, '0')
+      : '';
+    $('[data-continue]').textContent = 'Check and save card';
+    $('[data-continue]').disabled = false;
+    $('[data-buyer-name]').textContent = v.buyerName;
+    $('[data-buyer-email]').textContent = v.buyerEmail;
+    if (!$('#phone').value) $('#phone').value = v.buyerPhone || '';
+    show('checkout');
+    return;
+  }
 
   $('[data-plan-name]').textContent = v.planName + (v.interval === 'year' ? ' · yearly' : ' · monthly');
   $('[data-usd]').textContent = usd(v.usdMinor) + (v.interval === 'year' ? ' / year' : ' / month') + (v.promo ? ' (Founder’s Club)' : '');
@@ -81,7 +157,7 @@ async function load() {
   // Back from the bank's check (a redirect), or the page was reloaded mid-payment: wait for Paymob's confirmation.
   if (backFromBank && v.status === 'paying') poll();
   if (backFromBank && v.status === 'failed') {
-    setError('The payment did not go through. You can try again.');
+    setError(failedText());
     $('[data-continue]').textContent = 'Try again';
   }
 }
@@ -104,7 +180,7 @@ async function start() {
     if (res.status === 404) { show('invalid'); return; }
     if (!res.ok) {
       if (body.code === 'session_not_open') { await load(); return; }
-      setError(body.message || 'The payment could not be started. Please try again.');
+      setError(body.message || (cardUpdate ? 'The card check could not be started. Please try again.' : 'The payment could not be started. Please try again.'));
       button.disabled = false;
       return;
     }
@@ -140,20 +216,7 @@ function mountPixel(credentials) {
       if (result && result.success === false) step('payment_failed', 'pixel');
       poll();
     },
-    customStyle: {
-      Color_Primary: '#2D69FB',
-      Color_Container: '#262623',
-      Color_Input_Fields: '#1E1E1C',
-      Color_Border_Input_Fields: 'rgba(216,203,179,.30)',
-      Text_Color_For_Label: '#D8CBB3',
-      Text_Color_For_Input_Fields: '#D8CBB3',
-      Color_For_Text_Placeholder: 'rgba(216,203,179,.55)',
-      Text_Color_For_Payment_Button: '#FFFFFF',
-      Color_Error: '#E57373',
-      Radius_Border: '8',
-      Width_of_Container: '100%',
-      Container_Padding: '0',
-    },
+    customStyle: pixelStyle(),
   });
   if (!pixelShown) { pixelShown = true; step('pay_form_shown'); }
 }
@@ -174,7 +237,7 @@ async function poll() {
         if (status === 'paid') { settled = true; show('paid'); polling = false; return; }
         if (status === 'failed') {
           $('[data-confirming]').hidden = true;
-          setError('The payment did not go through. You can try again.');
+          setError(failedText());
           $('[data-pay]').hidden = true;
           const button = $('[data-continue]');
           button.hidden = false;
@@ -189,7 +252,9 @@ async function poll() {
     } catch (e) { /* keep trying until the time is up */ }
     await new Promise((resolve) => setTimeout(resolve, 2000));
   }
-  $('[data-confirming]').textContent = 'We’re confirming your payment. You can close this page; your plan will switch on when Paymob confirms.';
+  $('[data-confirming]').textContent = cardUpdate
+    ? 'We’re confirming your new card. You can close this page; your card will switch once Paymob confirms.'
+    : 'We’re confirming your payment. You can close this page; your plan will switch on when Paymob confirms.';
   polling = false;
 }
 

@@ -1,3 +1,11 @@
+# Changes: the checkout page can update a saved card
+
+Branch `feature/update-card`. Design in the backend repo: `docs/superpowers/specs/2026-11-23-update-saved-card-design.md`.
+- **Card-update mode:** the same `/checkout` page, for a session of kind `card_update`. It shows "Update your card", the small check (for example 10.00 EGP) that is refunded straight away, the card now on file, the consent and phone, and the button "Check and save card". Plan and price rows are hidden. Success says "Your card is updated. The 10.00 EGP check is being refunded."; a decline says the current card is still in use. Purchase mode is unchanged.
+- **A quieter card form for every use:** one `pixelStyle()` gives Paymob's form the site's dark surface, a hairline border, 8px corners, Inter, no card-brand icons or heading (`HideCardIcons`, `HideCardLabel`), short placeholders (Card number, MM / YY, CVV, Name on card) and plain error texts. Pixel documents no single-line card row, so this is the quietest version of its own layout. To be checked and tuned in the sandbox.
+- **Copy fix:** the purchase success note no longer promises a receipt by email (nothing sends one); it says "Your plan is ready to use."
+- Checked in the browser with a mocked session at phone width: card-update, purchase and success states.
+
 # Changes: the Ascend checkout page
 
 Branch `feature/checkout-page`. The founder wants buyers to pay on Ascend's own page instead of leaving for Paymob's hosted checkout. The design is in the backend repo, at `docs/superpowers/specs/2026-11-22-own-checkout-design.md`.
