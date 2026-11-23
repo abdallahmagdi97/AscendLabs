@@ -1,3 +1,7 @@
+# Changes: the card-update success text
+
+Branch `fix/card-update-success-text`. From the final review of the card update. After paying (or coming back from the bank while the session was still "paying"), the page showed the plan-purchase success text for a card update. One `showPaid()` now serves every path that reaches the success screen: "Your card is updated. The 10.00 EGP check will be refunded shortly." ("shortly", because the refund starts within a few minutes, not instantly). Checked in the browser with a session that is paying at load and paid on the next poll.
+
 # Changes: the card form was invisible
 
 Branch `fix/pixel-vertical-padding`. Found on the live card-update page: the card fields were not visible. The shared Pixel style set `Vertical_Padding: '0'`, which makes Paymob's card frame collapse to 4px tall (at 8 it only reached 24px; left out it is 120px). Found by mounting the form with each style group in turn on the live page. The option is removed; every other part of the minimal style (fonts, hidden icons and label, placeholders, error texts, button text, colours, radius) renders fine. This also affects plan purchases, which use the same style.
