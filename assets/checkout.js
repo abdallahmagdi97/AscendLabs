@@ -94,21 +94,26 @@ function pixelStyle() {
   };
 }
 
+/**
+ * The success screen, from every path that reaches it: a session already paid when the page loads, and the status poll after paying (or
+ * after coming back from the bank). A card update says so, and that the check will be refunded (the refund starts within a few minutes).
+ */
+function showPaid() {
+  settled = true;
+  if (cardUpdate) {
+    $('[data-paid-title]').textContent = 'Your card is updated.';
+    $('[data-paid-note]').textContent = 'The ' + ((session && session.egpAmount) || 'small') + ' check will be refunded shortly.';
+  }
+  show('paid');
+}
+
 function render(v) {
   session = v;
   $$('[data-return]').forEach((a) => { a.href = v.returnUrl; });
   $('[data-test-mode]').hidden = !v.testMode;
   cardUpdate = v.kind === 'card_update';
   if (v.status === 'expired') { settled = true; show('expired'); return; }
-  if (v.status === 'paid') {
-    settled = true;
-    if (cardUpdate) {
-      $('[data-paid-title]').textContent = 'Your card is updated.';
-      $('[data-paid-note]').textContent = 'The ' + (v.egpAmount || 'small') + ' check is being refunded.';
-    }
-    show('paid');
-    return;
-  }
+  if (v.status === 'paid') { showPaid(); return; }
 
   $$('[data-purchase-only]').forEach((el) => { el.hidden = cardUpdate; });
   $$('[data-card-only]').forEach((el) => { el.hidden = !cardUpdate; });
@@ -234,7 +239,7 @@ async function poll() {
       const res = await fetch(API + encodeURIComponent(id) + '/status', { credentials: 'omit' });
       if (res.ok) {
         const { status } = await res.json();
-        if (status === 'paid') { settled = true; show('paid'); polling = false; return; }
+        if (status === 'paid') { showPaid(); polling = false; return; }
         if (status === 'failed') {
           $('[data-confirming]').hidden = true;
           setError(failedText());
