@@ -1,3 +1,7 @@
+# Changes: Anora on the marketing website
+
+Branch `feature/anora-website`. `assets/anora.js` + `assets/anora.css`, added to the marketing pages (not checkout, sign-in or the legal pages). The launcher appears only when the backend's `GET /api/anora/public/status` answers 200, so it stays invisible until Anora is switched on for the website. Public visitors, nothing stored in the browser; each question carries a fresh Turnstile token; answers cite only ascend-labs.cc pages; no server HTML is inserted. Checked in the browser against a mocked stream (escaping, bold, citation allowlist, "Talk to our team" link, layout); not checked against the live backend (Anora is off there).
+
 # Changes: the card-update success text
 
 Branch `fix/card-update-success-text`. From the final review of the card update. After paying (or coming back from the bank while the session was still "paying"), the page showed the plan-purchase success text for a card update. One `showPaid()` now serves every path that reaches the success screen: "Your card is updated. The 10.00 EGP check will be refunded shortly." ("shortly", because the refund starts within a few minutes, not instantly). Checked in the browser with a session that is paying at load and paid on the next poll.

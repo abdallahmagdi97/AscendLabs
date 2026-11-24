@@ -1,0 +1,38 @@
+/* Anora on the marketing website. Uses the site's own tokens (site.css). */
+.anora { position: fixed; inset-block-end: 20px; inset-inline-end: 20px; z-index: 60; font-family: inherit; }
+.anora-launcher {
+  background: var(--blue); color: var(--on-accent); border: 0; border-radius: 999px; padding: .8rem 1.2rem;
+  font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 6px 24px rgba(0, 0, 0, .4);
+}
+.anora-launcher:hover { filter: brightness(1.08); }
+.anora-launcher:focus-visible, .anora-close:focus-visible, .anora-send:focus-visible, .anora-input:focus-visible, .anora a:focus-visible {
+  outline: 2px solid var(--sand); outline-offset: 2px;
+}
+.anora-panel {
+  width: min(380px, calc(100vw - 24px)); height: min(560px, calc(100vh - 40px)); display: flex; flex-direction: column;
+  background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+.anora-panel[hidden] { display: none; }
+.anora-head { display: flex; justify-content: space-between; align-items: center; padding: .8rem 1rem; background: var(--card-2); border-bottom: 1px solid var(--line); }
+.anora-close { background: none; border: 0; color: var(--fg); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 .3rem; }
+.anora-list { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
+.anora-msg { max-width: 88%; padding: .6rem .8rem; border-radius: 12px; line-height: 1.45; font-size: .95rem; overflow-wrap: anywhere; }
+.anora-user { align-self: flex-end; background: var(--blue); color: var(--on-accent); }
+.anora-assistant { align-self: flex-start; background: var(--card-2); }
+.anora-typing .anora-body:empty::after { content: '…'; color: var(--fg-3); }
+.anora-sources { margin-top: .5rem; font-size: .8rem; color: var(--fg-2); display: flex; flex-wrap: wrap; gap: .25rem .6rem; }
+.anora-sources a, .anora-team { color: var(--sand); text-decoration: underline; }
+.anora-team { display: inline-block; margin-top: .5rem; font-size: .85rem; }
+.anora-note { margin: 0; padding: .35rem 1rem; font-size: .72rem; color: var(--fg-3); }
+.anora-form { display: flex; gap: .5rem; padding: .75rem 1rem 1rem; border-top: 1px solid var(--line); }
+.anora-input { flex: 1; min-width: 0; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: .6rem .7rem; font: inherit; }
+.anora-send { background: var(--blue); color: var(--on-accent); border: 0; border-radius: 8px; padding: 0 1rem; font: inherit; font-weight: 600; cursor: pointer; }
+.anora-send:disabled, .anora-input:disabled { opacity: .55; cursor: default; }
+.anora-ts { position: absolute; }
+@media (max-width: 640px) {
+  .anora { inset-block-end: 12px; inset-inline-end: 12px; }
+  .anora-panel { position: fixed; inset: 0; width: auto; height: auto; border-radius: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { .anora-panel { animation: anora-in .15s ease-out; } }
+@keyframes anora-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
