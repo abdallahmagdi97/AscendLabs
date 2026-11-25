@@ -101,7 +101,7 @@ function pixelStyle() {
 function showPaid() {
   settled = true;
   if (cardUpdate) {
-    $('[data-paid-title]').textContent = 'Your card is updated.';
+    $('[data-paid-title]').textContent = session && session.currentCard ? 'Your card is updated.' : 'Your card is saved.';
     $('[data-paid-note]').textContent = 'The ' + ((session && session.egpAmount) || 'small') + ' check will be refunded shortly.';
   }
   show('paid');
@@ -118,7 +118,7 @@ function render(v) {
   $$('[data-purchase-only]').forEach((el) => { el.hidden = cardUpdate; });
   $$('[data-card-only]').forEach((el) => { el.hidden = !cardUpdate; });
   if (cardUpdate) {
-    $('[data-plan-name]').textContent = 'Update your card';
+    $('[data-plan-name]').textContent = v.currentCard ? 'Update your card' : 'Add your card';
     $('[data-check-text]').textContent = 'We charge ' + (v.egpAmount || 'a small amount') + ' to check the new card, then refund it straight away. Your plan and renewal date do not change.';
     $('[data-current-card]').textContent = v.currentCard
       ? 'Current card: ' + v.currentCard.brand + ' ending ' + v.currentCard.last4 + ' · expires ' + String(v.currentCard.expiryMonth).padStart(2, '0') + '/' + String(v.currentCard.expiryYear).padStart(2, '0')
