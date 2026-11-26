@@ -9,6 +9,29 @@
   function $$(s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); }
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Install Web Analytics manually on the public marketing pages. */
+  (function () {
+    var token = '';
+    var location = window.location;
+    if (!token || !/^(www\.)?ascend-labs\.cc$/.test(location.hostname) || location.search || location.hash) return;
+    if (!/^\/(?:index|about|products|crm|agent|pricing)?(?:\.html)?$/.test(location.pathname)) return;
+    if (doc.referrer) {
+      var referrer = new URL(doc.referrer);
+      if (referrer.search || referrer.hash || referrer.username || referrer.password) return;
+      if (referrer.origin !== location.origin && referrer.pathname !== '/') return;
+      if (referrer.origin === location.origin &&
+          !/^\/(?:index|about|products|crm|agent|pricing)?(?:\.html)?$/.test(referrer.pathname)) return;
+    }
+    if ($('script[src^="https://static.cloudflareinsights.com/beacon.min.js"]')) return;
+
+    var beacon = doc.createElement('script');
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.defer = true;
+    beacon.referrerPolicy = 'origin';
+    beacon.setAttribute('data-cf-beacon', JSON.stringify({ token: token, spa: false }));
+    doc.head.appendChild(beacon);
+  })();
+
   /* ---------- Header dropdowns (Products, Sign in) ---------- */
   (function () {
     var wrap = $('[data-header]');
@@ -227,6 +250,7 @@
         window.__ascendTurnstileReady = function () {
           tsWidget = window.turnstile.render(tsBox, {
             sitekey: siteKey,
+            action: 'contact',
             callback: function (t) { tsToken = t; },
             'expired-callback': function () { tsToken = null; },
             'error-callback': function () { tsToken = null; }
@@ -420,7 +444,16 @@
         .then(function (r) {
           resetCheck(); // a token works once
           if (r.status === 202 || r.ok) { setPhase('idle'); showSuccess('api', v); return; }
-          if (r.status === 503) { mailFallback(v); return; }          // email unavailable on the server: hand over to the visitor's email app
+          if (r.status === 503) {
+            return r.json().catch(function () { return {}; }).then(function (body) {
+              if (body && body.code === 'turnstile.unavailable') {
+                setPhase('error', body.message);
+                errorBox.focus();
+              } else {
+                mailFallback(v);
+              }
+            });
+          }
           if (r.status === 429) {
             setPhase('error', 'You’ve sent several messages in a short time. Please wait a few minutes and try again, or email us at ' + mailTo + '.');
             errorBox.focus();
@@ -444,7 +477,12 @@
           setPhase('error');
           errorBox.focus();
         })
-        .catch(function () { mailFallback(v); });                     // network error, blocked request or CORS failure
+        .catch(function () {
+          if (!siteKey) { mailFallback(v); return; }
+          resetCheck();
+          setPhase('error', 'The form could not be sent. Please try again.');
+          errorBox.focus();
+        });
     });
 
     var again = $('#form-reset');
