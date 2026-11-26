@@ -1,0 +1,87 @@
+/* Ascend design system: primitives, header, footer. Loaded after site.css and tokens.css; wins by order, not specificity.
+ * Documented in docs/redesign/02-design-system.md and demonstrated at /design-system.html. */
+
+/* ---------- Type primitives ---------- */
+.h-display, .h-1, .h-2, .h-3, .h-4 { font-family: var(--font-display); font-weight: 600; color: var(--fg); text-wrap: balance; }
+.h-display { font-size: var(--fs-8); line-height: var(--lh-tight); letter-spacing: var(--ls-display); }
+.h-1 { font-size: var(--fs-7); line-height: var(--lh-tight); letter-spacing: var(--ls-display); }
+.h-2 { font-size: var(--fs-6); line-height: var(--lh-snug); letter-spacing: var(--ls-head); }
+.h-3 { font-size: var(--fs-5); line-height: var(--lh-snug); letter-spacing: -.025em; }
+.h-4 { font-size: var(--fs-4); line-height: 1.25; letter-spacing: -.02em; }
+.body-lg { font-size: var(--fs-3); line-height: var(--lh-body); color: var(--fg-2); max-width: 36em; text-wrap: pretty; }
+.body { font-size: var(--fs-2); line-height: var(--lh-body); color: var(--fg-2); max-width: 42em; text-wrap: pretty; }
+.kicker { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-0); font-weight: 600; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--fg-3); }
+.kicker::before { content: ""; width: 18px; height: 1px; background: currentColor; }
+.kicker-accent { color: var(--accent-text); }
+.num { font-variant-numeric: tabular-nums; }
+/* The one serif moment per hero. */
+.serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+.on-paper { --fg: var(--on-sand); --fg-2: var(--on-sand-2); --fg-3: #5E584B; --accent-text: var(--accent-text-on-sand); --hairline: rgba(30, 30, 28, .16); background: var(--sand); color: var(--on-sand); }
+
+/* ---------- Layout primitives ---------- */
+.wrap { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: var(--section-y) 0; }
+.section-tight { padding: var(--sp-8) 0; }
+.rule { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
+.split { display: grid; gap: var(--sp-7); align-items: start; }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sp-8); } .split-even { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stack-3 > * + * { margin-top: var(--sp-3); }
+.stack-4 > * + * { margin-top: var(--sp-4); }
+.stack-5 > * + * { margin-top: var(--sp-5); }
+.stack-6 > * + * { margin-top: var(--sp-6); }
+
+/* Editorial rows: numbered, hairline-separated. The replacement for repeated three-up card grids. */
+.rows { border-top: 1px solid var(--hairline); }
+.row-item { display: grid; gap: var(--sp-3) var(--sp-6); padding: var(--sp-5) 0; border-bottom: 1px solid var(--hairline); align-items: baseline; }
+@media (min-width: 800px) { .row-item { grid-template-columns: 64px minmax(0, 5fr) minmax(0, 6fr); } }
+.row-item .idx { font-size: var(--fs-0); color: var(--fg-3); font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+.row-item h3 { font-size: var(--fs-4); font-weight: 600; letter-spacing: -.02em; }
+.row-item p { color: var(--fg-2); max-width: 38em; }
+
+/* ---------- Buttons ---------- */
+.btn { min-height: 46px; padding: 0 var(--sp-5); border-radius: 10px; letter-spacing: -.005em; transition: background var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out); }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--blue-solid); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18); }
+.btn-primary:hover { background: var(--blue-hover); }
+.btn .arr { display: inline-block; transition: transform var(--dur-2) var(--ease-out); }
+.btn:hover .arr, .link-arrow:hover .arr { transform: translateX(3px); }
+.btn-sm { min-height: 38px; padding: 0 var(--sp-4); border-radius: 9px; }
+.btn-quiet { background: transparent; color: var(--fg); border-color: var(--hairline-strong); }
+.btn-quiet:hover { border-color: var(--fg); background: rgba(216, 203, 179, .06); color: var(--fg); }
+.on-paper .btn-primary { background: var(--charcoal); color: var(--sand); box-shadow: none; }
+.on-paper .btn-primary:hover { background: #000; color: var(--sand); }
+.on-paper .btn-quiet { color: var(--on-sand); border-color: rgba(30, 30, 28, .4); }
+.on-paper .btn-quiet:hover { background: rgba(30, 30, 28, .06); border-color: var(--on-sand); color: var(--on-sand); }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--hairline-strong); color: var(--fg-2); white-space: nowrap; }
+.tag-live { color: var(--ok); border-color: rgba(99, 181, 139, .4); }
+.tag-soon { color: var(--fg-2); border-style: dashed; }
+
+/* ---------- Header: sticky, solid, hairline. Active page is an accent rule, not a box. ---------- */
+.header-wrap { position: sticky; top: 0; z-index: 40; }
+.site-header { background: rgba(30, 30, 28, .96); border-bottom: 1px solid var(--hairline); }
+.header-inner { height: var(--header-h); }
+.nav-btn, .nav-link { font-weight: 500; font-size: var(--fs-1); color: var(--fg-2); background: transparent; box-shadow: none; transition: color var(--dur-1) var(--ease-out); position: relative; }
+.nav-btn:hover, .nav-link:hover { background: transparent; color: var(--fg); }
+.nav-btn.is-active, .nav-btn.is-open, .nav-link[aria-current="page"] { background: transparent; box-shadow: none; color: var(--fg); }
+.nav-link[aria-current="page"]::after, .nav-btn.is-active::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 2px; border-radius: 2px; background: var(--blue); }
+.menu-products > div, .menu-signin > div { box-shadow: var(--shadow-float); border-color: var(--hairline-strong); }
+.menu-card { background: var(--surface-0); border-color: var(--hairline); transition: border-color var(--dur-2) var(--ease-out); }
+.menu-card:hover { border-color: var(--hairline-strong); }
+
+/* ---------- Footer: enterprise, quiet, complete. ---------- */
+.site-footer { background: var(--surface-0); border-top: 1px solid var(--hairline); }
+.footer-brand p { color: var(--fg-2); font-size: var(--fs-1); line-height: 1.6; }
+.footer-col h2 { letter-spacing: var(--ls-label); }
+.footer-col a { color: var(--fg-2); transition: color var(--dur-1) var(--ease-out); }
+.footer-col a:hover { color: var(--fg); text-decoration: none; }
+.footer-bottom { border-top: 1px solid var(--hairline); }
+.footer-contact { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-5); margin-top: var(--sp-5); font-size: var(--fs-1); }
+.footer-contact a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--hairline-strong); }
+.footer-contact a:hover { border-color: var(--blue); }
+
+/* Focus: one ring everywhere. */
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.on-paper :focus-visible { outline-color: var(--focus-on-sand); }
+
+/* One container width for legacy .container, the footer and the new .wrap, so chrome and content share an edge. */
+.container, .footer-inner { max-width: var(--container); }
