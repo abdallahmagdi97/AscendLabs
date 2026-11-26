@@ -35,3 +35,27 @@
     targets.forEach(function (t) { rise.observe(t); });
   }
 })();
+
+/* Manifesto: split the line into words so each can light up with scroll (CSS does the timing). */
+(function () {
+  var el = document.querySelector('[data-lit]');
+  if (!el || !(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var n = 0;
+  (function walk(node) {
+    [].slice.call(node.childNodes).forEach(function (c) {
+      if (c.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          var s = document.createElement('span');
+          s.className = 'lit-w'; s.style.setProperty('--i', n++); s.textContent = part;
+          frag.appendChild(s);
+        });
+        node.replaceChild(frag, c);
+      } else if (c.nodeType === 1) { walk(c); }
+    });
+  })(el);
+  el.classList.add('is-lit');
+})();
