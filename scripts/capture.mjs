@@ -6,7 +6,7 @@ import { mkdirSync } from 'node:fs';
 
 const out = process.argv[2] || 'docs/redesign/screenshots/after';
 mkdirSync(out, { recursive: true });
-const pages = ['index', 'products', 'pricing', 'about', 'contact', 'crm', 'broker-crm', 'developer-crm', 'agent', 'privacy', '404'];
+const pages = ['index', 'products', 'pricing', 'about', 'contact', 'crm', 'broker-crm', 'developer-crm', 'agent', 'whatsapp-campaigns', 'privacy', '404'];
 const server = spawn(process.execPath, ['scripts/serve.mjs', '4181'], { stdio: 'ignore' });
 await new Promise((r) => setTimeout(r, 800));
 const browser = await chromium.launch();

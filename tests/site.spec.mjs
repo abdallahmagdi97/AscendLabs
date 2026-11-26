@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
-const MARKETING = ['index', 'products', 'pricing', 'about', 'contact', 'crm', 'broker-crm', 'developer-crm', 'agent'];
+const MARKETING = ['index', 'products', 'pricing', 'about', 'contact', 'crm', 'broker-crm', 'developer-crm', 'agent', 'whatsapp-campaigns'];
 const OTHER = ['privacy', 'terms', 'refund', 'acceptable-use', '404'];
 const ALL = [...MARKETING, ...OTHER];
 // The live API is cross-origin from localhost, so its calls fail here; those are not site errors.
@@ -112,12 +112,10 @@ test('sticky story advances while scrolling (motion allowed)', async ({ page }) 
   await page.goto('/index.html');
   const story = page.locator('.story');
   await story.scrollIntoViewIfNeeded();
-  const first = await story.getAttribute('data-active');
-  const box = await story.boundingBox();
-  await page.evaluate((y) => window.scrollTo(0, y), box.y + (await page.evaluate(() => scrollY)) + box.height * 0.8);
-  await page.waitForTimeout(500);
-  const last = await story.getAttribute('data-active');
-  expect(Number(last)).toBeGreaterThan(Number(first));
+  const steps = page.locator('.story [data-step]');
+  const last = (await steps.count()) - 1;
+  await steps.nth(last).evaluate((el) => el.scrollIntoView({ block: 'center' }));
+  await expect(story).toHaveAttribute('data-active', String(last));
 });
 
 test('Coming-soon items are marked on every product page', async ({ page }) => {
@@ -182,4 +180,23 @@ test.describe('screenshot regression (reduced motion)', () => {
       await expect(page).toHaveScreenshot(`${name}.png`, { animations: 'disabled' });
     });
   }
+});
+
+test('WhatsApp Campaigns page: real screenshot, pricing matches, deep link opens the WhatsApp plans', async ({ page }) => {
+  await page.goto('/whatsapp-campaigns.html');
+  const img = page.locator('.shot img').first();
+  await expect(img).toBeVisible();
+  expect(await img.evaluate((i) => i.naturalWidth)).toBeGreaterThan(1000);
+  const pricing = readFileSync('pricing.html', 'utf8');
+  for (const p of ['$29', '$59', '$99']) expect(pricing).toContain(p);
+  await page.goto('/pricing.html#whatsapp');
+  await expect(page.locator('#whatsapp')).toBeVisible();
+});
+
+test('fonts are self-hosted (no Google Fonts on marketing pages)', async ({ page }) => {
+  for (const name of MARKETING) expect(readFileSync(`${name}.html`, 'utf8')).not.toContain('fonts.googleapis.com');
+  await page.goto('/index.html');
+  await page.waitForLoadState('load');
+  const ok = await page.evaluate(async () => { await document.fonts.ready; return ['Inter', 'Instrument Serif'].every((f) => [...document.fonts].some((x) => x.family.replace(/"/g, '') === f && x.status === 'loaded')); });
+  expect(ok).toBe(true);
 });
