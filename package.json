@@ -1,0 +1,15 @@
+{
+  "name": "ascend-labs-site",
+  "private": true,
+  "description": "Static marketing site. Pages are built from src/ by scripts/build.mjs; tests are dev-only.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "playwright test",
+    "test:update": "playwright test --update-snapshots",
+    "shots": "node scripts/capture.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.60.0"
+  }
+}
