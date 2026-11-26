@@ -12,10 +12,10 @@ Inter (UI and headlines) plus Instrument Serif italic for one phrase per hero (`
 4px base: `--sp-1..10` (4 → 144). `.wrap` / `.container` max 1240, `.section` rhythm `--section-y`, `.split` (5/7 asymmetric), `.rows` + `.row-item` (numbered editorial rows instead of three-up card grids), `.stack-3..6`.
 
 ## Components
-Buttons: `.btn-primary` (blue, charcoal on paper), `.btn-quiet`, `.btn-sm`, `.arr` arrow nudges on hover. Tags: `.tag`, `.tag-live`, `.tag-soon` (dashed = not available yet, used for every Coming-soon item). Header: sticky, solid, hairline, accent rule under the current page. Footer: dark well, contact line (info@ascend-labs.cc), four link columns. One focus ring (2px `--focus`, offset 3px).
+Buttons: `.btn-primary` (blue, charcoal on paper), `.btn-quiet`, `.btn-sm`, `.arr` arrow nudges on hover. Tags: `.chip`, `.chip-live`, `.chip-soon` (dashed = not available yet, used for every Coming-soon item). Header: sticky, solid, hairline, accent rule under the current page. Footer: dark well, contact line (info@ascend-labs.cc), four link columns. One focus ring (2px `--focus`, offset 3px).
 
 ## Motion language (implemented in Phase 2)
 Easings `--ease-out`, `--ease-inout`; durations 120 / 240 / 480 / 800 ms; stagger 60 ms; parallax cap 24 px. Transform and opacity only, nothing loops, everything gated by `prefers-reduced-motion` and by the `.js` class so the page is complete without scripting.
 
 ## Rules
-No gradient or glow blobs, no glassmorphism, no repeated three-up card grids, no inline `style` for spacing, no new colours, no invented stats or testimonials, Coming-soon features always carry `.tag-soon`.
+No gradient or glow blobs, no glassmorphism, no repeated three-up card grids, no inline `style` for spacing, no new colours, no invented stats or testimonials, Coming-soon features always carry `.chip-soon`.

@@ -1,0 +1,65 @@
+/* Page compositions shared by the home page and the product landing pages. Built on tokens.css + system.css. */
+
+/* ---------- Hero ---------- */
+.hero2 { position: relative; padding: clamp(40px, 6vw, 80px) 0 0; overflow: clip; }
+.hero2-copy { display: grid; gap: var(--sp-5); max-width: 1100px; }
+.hero2 .h-display .serif { color: var(--accent-text); font-size: 1.04em; }
+.hero2-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; margin-top: var(--sp-3); }
+.hero2-note { font-size: var(--fs-0); color: var(--fg-3); max-width: 46em; }
+.hero2-stage { margin-top: clamp(32px, 4vw, 56px); }
+.hero2-stage .scr { box-shadow: var(--shadow-float); }
+.hero2-stage .scr-body { min-height: 0; }
+.stage-caption { margin-top: var(--sp-3); font-size: var(--fs-0); color: var(--fg-3); text-align: center; }
+/* A hairline floor under the stage so the product frame appears to stand on the page. */
+.hero2::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--hairline); }
+
+/* ---------- Ecosystem ---------- */
+.eco { display: grid; gap: 0; border-top: 1px solid var(--hairline); }
+.eco-item { display: grid; gap: var(--sp-4) var(--sp-6); padding: var(--sp-6) 0; border-bottom: 1px solid var(--hairline); align-items: start; }
+@media (min-width: 900px) { .eco-item { grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr); } }
+.eco-item h3 { font-size: var(--fs-5); font-weight: 600; letter-spacing: -.025em; }
+.eco-item .for { font-size: var(--fs-0); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--fg-3); margin-bottom: var(--sp-2); display: block; }
+.eco-item p { color: var(--fg-2); max-width: 36em; }
+.eco-links { display: flex; flex-direction: column; gap: var(--sp-2); font-weight: 600; font-size: var(--fs-1); }
+.eco-links a { text-decoration: none; }
+.eco-links a:hover { text-decoration: underline; }
+
+/* ---------- Story stage fragments (sample-data UI drawn in CSS; labelled as illustrative in the markup) ---------- */
+.frag { display: grid; gap: var(--sp-2); }
+.frag-row { display: flex; align-items: center; gap: var(--sp-3); padding: 10px 12px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface-2); font-size: var(--fs-1); }
+.frag-row b { font-weight: 600; color: var(--fg); }
+.frag-row .sub { color: var(--fg-3); font-size: var(--fs-0); }
+.frag-row .push { margin-left: auto; }
+.frag-row .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex: none; }
+.frag-row .dot-ok { background: var(--ok); } .frag-row .dot-warn { background: var(--warn); }
+.frag-bars { display: grid; gap: var(--sp-3); }
+.frag-bar { display: grid; grid-template-columns: 90px 1fr 36px; align-items: center; gap: var(--sp-3); font-size: var(--fs-0); color: var(--fg-2); }
+.frag-bar i { display: block; height: 8px; border-radius: 4px; background: var(--blue); }
+.frag-bar span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.frag-title { font-size: var(--fs-0); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--fg-3); }
+.story-panel .frag-note { margin-top: auto; font-size: 11.5px; color: var(--fg-3); }
+
+/* ---------- Reliability list (facts only) ---------- */
+.facts { display: grid; gap: 0; border-top: 1px solid var(--hairline); }
+.fact { display: grid; gap: var(--sp-2) var(--sp-6); padding: var(--sp-5) 0; border-bottom: 1px solid var(--hairline); }
+@media (min-width: 800px) { .fact { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); } }
+.fact h3 { font-size: var(--fs-4); font-weight: 600; letter-spacing: -.02em; }
+.fact p { color: var(--fg-2); max-width: 42em; }
+
+/* ---------- Discovery ---------- */
+.pick2 { display: grid; border-top: 1px solid var(--hairline); }
+.pick2 a { display: grid; gap: var(--sp-2) var(--sp-5); padding: var(--sp-5) 0; border-bottom: 1px solid var(--hairline); text-decoration: none; color: var(--fg); align-items: center; transition: padding var(--dur-2) var(--ease-out), background var(--dur-2) var(--ease-out); }
+@media (min-width: 800px) { .pick2 a { grid-template-columns: minmax(0, 6fr) minmax(0, 4fr) 24px; } }
+.pick2 a:hover { background: rgba(216, 203, 179, .04); padding-left: var(--sp-3); }
+.pick2 .need { font-size: var(--fs-4); font-weight: 600; letter-spacing: -.02em; }
+.pick2 .go { color: var(--accent-text); font-weight: 600; }
+.pick2 .go small { display: block; font-size: var(--fs-0); color: var(--fg-3); font-weight: 500; }
+.pick2 .arr { color: var(--fg-3); transition: transform var(--dur-2) var(--ease-out); }
+.pick2 a:hover .arr { transform: translateX(4px); color: var(--fg); }
+
+.price-line { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-6); margin-top: var(--sp-6); font-size: var(--fs-1); color: var(--fg-2); }
+.price-line b { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ---------- Closing CTA (the page's paper section) ---------- */
+.close-cta { display: grid; gap: var(--sp-6); align-items: end; }
+@media (min-width: 900px) { .close-cta { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } .close-cta .btn-row { justify-content: flex-end; } }

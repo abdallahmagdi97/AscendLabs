@@ -52,9 +52,9 @@
 .on-paper .btn-primary:hover { background: #000; color: var(--sand); }
 .on-paper .btn-quiet { color: var(--on-sand); border-color: rgba(30, 30, 28, .4); }
 .on-paper .btn-quiet:hover { background: rgba(30, 30, 28, .06); border-color: var(--on-sand); color: var(--on-sand); }
-.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--hairline-strong); color: var(--fg-2); white-space: nowrap; }
-.tag-live { color: var(--ok); border-color: rgba(99, 181, 139, .4); }
-.tag-soon { color: var(--fg-2); border-style: dashed; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--hairline-strong); color: var(--fg-2); white-space: nowrap; }
+.chip-live { color: var(--ok); border-color: rgba(99, 181, 139, .4); }
+.chip-soon { color: var(--fg-2); border-style: dashed; }
 
 /* ---------- Header: sticky, solid, hairline. Active page is an accent rule, not a box. ---------- */
 .header-wrap { position: sticky; top: 0; z-index: 40; }

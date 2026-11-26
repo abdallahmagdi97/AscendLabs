@@ -39,7 +39,7 @@
 .story-step p { color: var(--fg-2); max-width: 32em; }
 @media (min-width: 900px) {
   .story { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sp-8); align-items: start; }
-  .story-stage { grid-column: 2; grid-row: 1; height: min(560px, calc(100vh - var(--header-h) - var(--sp-8))); top: calc(var(--header-h) + var(--sp-5)); }
+  .story-stage { grid-column: 2; grid-row: 1; height: min(420px, calc(100vh - var(--header-h) - var(--sp-8))); top: calc(var(--header-h) + var(--sp-5)); }
   .story-steps { grid-column: 1; grid-row: 1; gap: 0; }
   .story-step { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; }
 }
@@ -56,4 +56,12 @@
 }
 /* Without JS every step reads at full strength and the stage shows the first panel only. */
 html:not(.js) .story-panel:not([data-panel="0"]) { display: none; }
-.story-panel > .tag { align-self: flex-start; }
+.story-panel > .chip { align-self: flex-start; }
+
+/* Hero stage: already in view at load, so it only settles from a slight tilt (never hidden). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .js .stage-3d.is-hero > .stage-plane { animation-name: m-tilt-hero; animation-range: cover 0% cover 40%; }
+    @keyframes m-tilt-hero { from { transform: rotateX(9deg) scale(.97); } to { transform: none; } }
+  }
+}
