@@ -3,7 +3,7 @@
 Worktree `C:/w/site-redesign`, off `origin/main` 1a66103. Commits: phase 0 audit/plan, 1 design system + build, 2 motion, 3 home, 4 product pages, 5 performance, 6 tests and screenshots.
 
 ## What changed
-- **Build:** `node scripts/build.mjs` assembles pages from `src/` (shared header/footer partials, automatic `?v=` hashes); `--check` fails on drift. Root `.html` files are still what Vercel serves; no framework, no runtime dependency, `vercel.json` untouched.
+- **Build:** `npm run make` (`node scripts/build.mjs`) assembles pages from `src/` (shared header/footer partials, automatic `?v=` hashes); `--check` fails on drift. Root `.html` files are still what Vercel serves; no framework, no runtime dependency, `vercel.json` untouched.
 - **Design system:** `assets/tokens.css`, `system.css`, `motion.css`, `pages.css`, `motion.js` (~9 KB total). Reference page `/design-system.html` (noindex). Rules in `02-design-system.md`.
 - **Brand:** kept the real brand, charcoal / sand / electric blue (the live brand is not lime).
 - **Home:** hero with the product stage visible above the fold, suite intro, sticky scroll-driven workflow story, Campaigns section (the page's one sand section), a facts-only trust section, find-your-fit rows, CTA, existing FAQ.
