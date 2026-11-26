@@ -22,13 +22,13 @@
   if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
     var targets = [].slice.call(doc.querySelectorAll('[data-scroll="rise"], .stage-plane'));
-    targets.forEach(function (t) { t.style.opacity = '0'; t.style.transform = 'translate3d(0,18px,0)'; });
+    targets.forEach(function (t) { t.style.transform = 'translate3d(0,24px,0)'; });
     var rise = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         var t = e.target;
-        t.style.transition = 'opacity 480ms cubic-bezier(.2,0,0,1), transform 480ms cubic-bezier(.2,0,0,1)';
-        t.style.opacity = '1'; t.style.transform = 'none';
+        t.style.transition = 'transform 480ms cubic-bezier(.2,0,0,1)';
+        t.style.transform = 'none';
         rise.unobserve(t);
       });
     }, { rootMargin: '0px 0px -10% 0px' });

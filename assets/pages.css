@@ -72,7 +72,7 @@
 .prod-hero .hero2-copy { max-width: 900px; }
 .prod-hero .h-1 { font-size: var(--fs-8); }
 .row-item h3 .chip { margin-left: var(--sp-2); vertical-align: middle; }
-.on-paper .chip-soon { color: #5E584B; border-color: rgba(30, 30, 28, .4); }
+.on-paper .chip-soon { color: #4A463D; border-color: rgba(30, 30, 28, .4); }
 .on-paper .row-item p, .on-paper .body-lg { color: var(--on-sand-2); }
 
 /* Rows inside a split column are narrow: stack title over body, keep the index in a gutter. */

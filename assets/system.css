@@ -16,7 +16,7 @@
 .num { font-variant-numeric: tabular-nums; }
 /* The one serif moment per hero. */
 .serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
-.on-paper { --fg: var(--on-sand); --fg-2: var(--on-sand-2); --fg-3: #5E584B; --accent-text: var(--accent-text-on-sand); --hairline: rgba(30, 30, 28, .16); background: var(--sand); color: var(--on-sand); }
+.on-paper { --fg: var(--on-sand); --fg-2: var(--on-sand-2); --fg-3: #4A463D; --accent-text: #1A44B8; --hairline: rgba(30, 30, 28, .16); background: var(--sand); color: var(--on-sand); }
 
 /* ---------- Layout primitives ---------- */
 .wrap { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }

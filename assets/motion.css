@@ -12,12 +12,14 @@
   /* 2. Scroll-driven (CSS scroll timelines, compositor thread). Browsers without support keep the static final state. */
   @supports (animation-timeline: view()) {
     /* Section content rises as it enters. */
-    .js [data-scroll="rise"] { animation: m-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+    .js [data-scroll="rise"] { animation: m-lift linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
 
     /* Product stage: tilts in perspective and settles flat as it reaches the middle of the viewport. */
     .js .stage-3d { perspective: 1400px; }
     .js .stage-3d > .stage-plane { animation: m-tilt linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; transform-origin: 50% 100%; }
-    @keyframes m-tilt { from { transform: rotateX(14deg) translate3d(0, 40px, 0) scale(.94); opacity: .4; } to { transform: none; opacity: 1; } }
+    @keyframes m-tilt { from { transform: rotateX(14deg) translate3d(0, 40px, 0) scale(.94); } to { transform: none; } }
+    /* Scroll-driven motion never changes opacity, so text keeps full contrast at every scroll position. */
+    @keyframes m-lift { from { transform: translate3d(0, 28px, 0); } to { transform: none; } }
 
     /* Controlled parallax: bounded by --parallax-max. */
     .js [data-drift] { animation: m-drift linear both; animation-timeline: view(); animation-range: cover; }
@@ -46,13 +48,17 @@
 
 .js .story-panel { opacity: 0; visibility: hidden; }
 .js .story[data-active="0"] [data-panel="0"], .js .story[data-active="1"] [data-panel="1"], .js .story[data-active="2"] [data-panel="2"], .js .story[data-active="3"] [data-panel="3"], .js .story[data-active="4"] [data-panel="4"] { opacity: 1; visibility: visible; }
-.js .story-step { opacity: .45; border-left-color: var(--hairline); }
-.js .story[data-active="0"] [data-step="0"], .js .story[data-active="1"] [data-step="1"], .js .story[data-active="2"] [data-step="2"], .js .story[data-active="3"] [data-step="3"], .js .story[data-active="4"] [data-step="4"] { opacity: 1; border-left-color: var(--blue); }
+.js .story-step { border-left-color: var(--hairline); }
+.js .story-step h3 { color: var(--fg-2); }
+.js .story-step p { color: var(--fg-3); }
+.js .story[data-active="0"] [data-step="0"], .js .story[data-active="1"] [data-step="1"], .js .story[data-active="2"] [data-step="2"], .js .story[data-active="3"] [data-step="3"], .js .story[data-active="4"] [data-step="4"] { border-left-color: var(--blue); }
+.js .story-step.is-on h3, .js .story[data-active="0"] [data-step="0"] h3, .js .story[data-active="1"] [data-step="1"] h3, .js .story[data-active="2"] [data-step="2"] h3, .js .story[data-active="3"] [data-step="3"] h3, .js .story[data-active="4"] [data-step="4"] h3 { color: var(--fg); }
+.js .story[data-active="0"] [data-step="0"] p, .js .story[data-active="1"] [data-step="1"] p, .js .story[data-active="2"] [data-step="2"] p, .js .story[data-active="3"] [data-step="3"] p, .js .story[data-active="4"] [data-step="4"] p { color: var(--fg-2); }
 @media (prefers-reduced-motion: no-preference) {
   .js .story-panel { transition: opacity var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); transform: translate3d(0, 10px, 0); }
   .js .story[data-active] .story-panel { transition-property: opacity, transform, visibility; }
   .js .story[data-active="0"] [data-panel="0"], .js .story[data-active="1"] [data-panel="1"], .js .story[data-active="2"] [data-panel="2"], .js .story[data-active="3"] [data-panel="3"], .js .story[data-active="4"] [data-panel="4"] { transform: none; transition-delay: 0s; }
-  .js .story-step { transition: opacity var(--dur-3) var(--ease-out), border-color var(--dur-3) var(--ease-out); }
+  .js .story-step, .js .story-step h3, .js .story-step p { transition: color var(--dur-3) var(--ease-out), border-color var(--dur-3) var(--ease-out); }
 }
 /* Without JS every step reads at full strength and the stage shows the first panel only. */
 html:not(.js) .story-panel:not([data-panel="0"]) { display: none; }
