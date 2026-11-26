@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system — Ascend Labs</title>
+<meta name="description" content="Ascend design system reference.">
+<meta name="author" content="Ascend Labs">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1E1E1C">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5850a313">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=74f88564">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=d93fcb1d">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=64bcdf29">
+<link rel="stylesheet" href="assets/tokens.css?v=0">
+<link rel="stylesheet" href="assets/system.css?v=0">
+<link rel="stylesheet" href="assets/motion.css?v=0">
+<script src="assets/site.js?v=804acc5c" defer></script>
+<script src="assets/motion.js?v=0" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!--@header base= current=--><main id="main" tabindex="-1">
+<section class="section-tight"><div class="wrap stack-5">
+<span class="kicker kicker-accent">Design system</span>
+<h1 class="h-1">Precision in motion.</h1>
+<p class="body-lg">Reference page for the tokens and primitives every Ascend page is built from. Not linked from the site and hidden from search engines.</p>
+</div></section>
+
+<section class="section-tight"><div class="wrap stack-6">
+<h2 class="h-3">Type scale</h2>
+<hr class="rule">
+<p class="h-display">Display 96</p><p class="h-1">Heading one 72</p><p class="h-2">Heading two 48</p><p class="h-3">Heading three 31</p><p class="h-4">Heading four 25</p>
+<p class="body-lg">Lede: Ascend gives every property team one place to answer, assign and follow through.</p>
+<p class="body">Body: sixteen pixels on a 1.55 line, 42em measure, tabular figures for prices <span class="num">$19 $49 $99</span>.</p>
+<p class="kicker kicker-accent">Kicker label</p>
+<p class="h-2">Every lead answered. <span class="serif" style="color:var(--accent-text)">One serif phrase.</span></p>
+</div></section>
+
+<section class="section-tight"><div class="wrap stack-6">
+<h2 class="h-3">Buttons and tags</h2>
+<hr class="rule">
+<div class="btn-row"><a class="btn btn-primary" href="#">Book a demo <span class="arr" aria-hidden="true">&rarr;</span></a><a class="btn btn-quiet" href="#">See pricing</a><a class="btn btn-primary btn-sm" href="#">Start free</a></div>
+<div class="btn-row"><span class="chip chip-live">Available</span><span class="chip chip-soon">Coming soon</span><span class="chip">Neutral</span></div>
+</div></section>
+
+<section class="section-tight"><div class="wrap stack-6">
+<h2 class="h-3">Editorial rows</h2>
+<div class="rows">
+<div class="row-item"><span class="idx">01</span><h3>Capture</h3><p>Every enquiry lands in one place, whatever channel it came from.</p></div>
+<div class="row-item"><span class="idx">02</span><h3>Assign</h3><p>The right agent gets it, and managers see who answered and how fast.</p></div>
+</div>
+</div></section>
+
+<section class="section-tight"><div class="wrap stack-6">
+<h2 class="h-3" data-rise style="--i:0">Motion: entrance, tilt and sticky story</h2>
+<p class="body" data-rise style="--i:1">Entrance stagger above, scroll-driven tilt and parallax below, then a sticky story. All of it falls back to a static page without JavaScript or with reduced motion.</p>
+<div class="stage-3d"><div class="stage-plane" style="border:1px solid var(--hairline-strong);border-radius:14px;background:var(--surface-0);padding:var(--sp-6);min-height:260px"><span class="chip chip-live">Sample stage</span><p class="h-3" style="margin-top:var(--sp-4)" data-drift>Product frame in perspective</p></div></div>
+</div></section>
+<section class="section-tight"><div class="wrap"><div class="story">
+<div class="story-stage" aria-hidden="true">
+<div class="story-panel" data-panel="0"><span class="chip">Step 1</span><p class="h-4">Capture</p></div>
+<div class="story-panel" data-panel="1"><span class="chip">Step 2</span><p class="h-4">Assign</p></div>
+<div class="story-panel" data-panel="2"><span class="chip">Step 3</span><p class="h-4">Follow up</p></div>
+</div>
+<div class="story-steps">
+<div class="story-step" data-step="0"><h3>Capture</h3><p>The stage on the right changes as each step reaches the middle of the screen.</p></div>
+<div class="story-step" data-step="1"><h3>Assign</h3><p>Step text stays fully readable without the stage; the stage is decoration for the same content.</p></div>
+<div class="story-step" data-step="2"><h3>Follow up</h3><p>On phones the stage sticks under the header at 260px.</p></div>
+</div></div></div></section>
+<section class="section on-paper"><div class="wrap split">
+<div class="stack-4"><span class="kicker">On paper</span><h2 class="h-2">One light section per page.</h2></div>
+<div class="stack-5"><p class="body-lg">The sand surface gives each page one moment of contrast. Text and focus colours switch with the <code>.on-paper</code> scope.</p><div class="btn-row"><a class="btn btn-primary" href="#">Primary</a><a class="btn btn-quiet" href="#">Quiet</a></div></div>
+</div></section>
+
+<section class="section-tight"><div class="wrap stack-6">
+<h2 class="h-3">Surfaces and spacing</h2>
+<div class="btn-row" style="gap:12px">
+<span class="chip" style="background:var(--surface-0)">surface-0</span><span class="chip" style="background:var(--surface-1)">surface-1</span><span class="chip" style="background:var(--surface-2)">surface-2</span><span class="chip" style="background:var(--surface-3)">surface-3</span>
+</div>
+</div></section>
+</main>
+<!--@footer-->
+</body>
+</html>

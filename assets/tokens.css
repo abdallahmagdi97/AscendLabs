@@ -1,0 +1,42 @@
+/* Ascend design tokens. Single source for type, space, motion and depth. Colour tokens live in site.css (:root) and stay
+ * the official charcoal / sand / electric-blue set; this file adds the scales around them. */
+:root {
+  /* Type: major-third scale (1.25) from 16px, fluid between 360px and 1440px viewports. */
+  --fs-0: 0.8125rem;                                   /* 13  fine print, labels */
+  --fs-1: 0.9375rem;                                   /* 15  UI, small body */
+  --fs-2: 1rem;                                        /* 16  body */
+  --fs-3: clamp(1.0625rem, 1.01rem + .22vw, 1.25rem);  /* 17-20 lede */
+  --fs-4: clamp(1.25rem, 1.1rem + .6vw, 1.5625rem);    /* 20-25 h4 / card title */
+  --fs-5: clamp(1.5rem, 1.25rem + 1vw, 1.9375rem);     /* 24-31 h3 */
+  --fs-6: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);       /* 30-48 h2 */
+  --fs-7: clamp(2.375rem, 1.6rem + 3.3vw, 4.5rem);     /* 38-72 h1 */
+  --fs-8: clamp(2.5rem, 1.2rem + 4.4vw, 5rem);        /* 40-80 display (home hero only) */
+  --lh-tight: 1.04; --lh-snug: 1.18; --lh-body: 1.55;
+  --ls-display: -.045em; --ls-head: -.03em; --ls-label: .1em;
+
+  /* Space: 4px base. */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px; --sp-10: 144px;
+  --section-y: clamp(64px, 10vw, 144px);
+  --container: 1240px;
+  --header-h: 72px;
+
+  /* Depth: borders carry structure; shadows are only for things that float. */
+  --surface-0: #141413;       /* below the page: media wells, footer */
+  --surface-1: #1E1E1C;       /* page */
+  --surface-2: #262623;       /* raised panel */
+  --surface-3: #30302C;       /* hover / selected */
+  --hairline: rgba(216, 203, 179, .12);
+  --hairline-strong: rgba(216, 203, 179, .28);
+  --shadow-float: 0 24px 60px -24px rgba(0, 0, 0, .7), 0 1px 0 rgba(216, 203, 179, .05) inset;
+
+  /* Motion language. Movement is transform / opacity only. */
+  --ease-out: cubic-bezier(.2, 0, 0, 1);
+  --ease-inout: cubic-bezier(.65, 0, .35, 1);
+  --dur-1: 120ms;  /* hover, press */
+  --dur-2: 240ms;  /* small reveals, menus */
+  --dur-3: 480ms;  /* section reveals */
+  --dur-4: 800ms;  /* hero, product stage */
+  --stagger: 60ms;
+  --parallax-max: 24px;
+}

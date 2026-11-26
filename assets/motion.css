@@ -1,0 +1,73 @@
+/* Ascend motion. Rules: transform and opacity only; native scroll; nothing loops; complete and readable without JS
+ * (every rule below is gated by .js) and with prefers-reduced-motion (gated by no-preference). Tokens: tokens.css. */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* 1. Entrance choreography: elements marked data-rise settle in sequence on load. Order set with style="--i:N". */
+  .js [data-rise] { animation: m-rise var(--dur-4) var(--ease-out) both; animation-delay: calc(var(--i, 0) * var(--stagger) + 80ms); }
+  @keyframes m-rise { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: none; } }
+  .js [data-rise="fade"] { animation-name: m-fade; }
+  @keyframes m-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* 2. Scroll-driven (CSS scroll timelines, compositor thread). Browsers without support keep the static final state. */
+  @supports (animation-timeline: view()) {
+    /* Section content rises as it enters. */
+    .js [data-scroll="rise"] { animation: m-lift linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+
+    /* Product stage: tilts in perspective and settles flat as it reaches the middle of the viewport. */
+    .js .stage-3d { perspective: 1400px; }
+    .js .stage-3d > .stage-plane { animation: m-tilt linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; transform-origin: 50% 100%; }
+    @keyframes m-tilt { from { transform: rotateX(14deg) translate3d(0, 40px, 0) scale(.94); } to { transform: none; } }
+    /* Scroll-driven motion never changes opacity, so text keeps full contrast at every scroll position. */
+    @keyframes m-lift { from { transform: translate3d(0, 28px, 0); } to { transform: none; } }
+
+    /* Controlled parallax: bounded by --parallax-max. */
+    .js [data-drift] { animation: m-drift linear both; animation-timeline: view(); animation-range: cover; }
+    @keyframes m-drift { from { transform: translate3d(0, calc(var(--parallax-max) * -1), 0); } to { transform: translate3d(0, var(--parallax-max), 0); } }
+  }
+
+  /* 3. Hover and press: one lift, one underline, one arrow nudge. */
+  .lift { transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out); }
+  .lift:hover { transform: translate3d(0, -3px, 0); border-color: var(--hairline-strong); }
+}
+
+/* 4. Sticky product story: copy steps scroll, the stage stays; JS marks the active step (data-active on .story). */
+.story { display: grid; gap: var(--sp-7); }
+.story-stage { position: sticky; top: calc(var(--header-h) + var(--sp-3)); z-index: 2; height: 260px; align-self: start; border: 1px solid var(--hairline-strong); border-radius: 14px; background: var(--surface-0); overflow: hidden; }
+.story-panel { position: absolute; inset: 0; padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); }
+.story-steps { display: grid; gap: var(--sp-7); }
+.story-step { min-height: 38vh; padding-block: var(--sp-4); border-left: 2px solid var(--hairline); padding-left: var(--sp-5); }
+.story-step h3 { font-size: var(--fs-5); font-weight: 600; letter-spacing: -.025em; margin-bottom: var(--sp-3); }
+.story-step p { color: var(--fg-2); max-width: 32em; }
+@media (min-width: 900px) {
+  .story { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sp-8); align-items: start; }
+  .story-stage { grid-column: 2; grid-row: 1; height: min(420px, calc(100vh - var(--header-h) - var(--sp-8))); top: calc(var(--header-h) + var(--sp-5)); }
+  .story-steps { grid-column: 1; grid-row: 1; gap: 0; }
+  .story-step { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; }
+}
+
+.js .story-panel { opacity: 0; visibility: hidden; }
+.js .story[data-active="0"] [data-panel="0"], .js .story[data-active="1"] [data-panel="1"], .js .story[data-active="2"] [data-panel="2"], .js .story[data-active="3"] [data-panel="3"], .js .story[data-active="4"] [data-panel="4"] { opacity: 1; visibility: visible; }
+.js .story-step { border-left-color: var(--hairline); }
+.js .story-step h3 { color: var(--fg-2); }
+.js .story-step p { color: var(--fg-3); }
+.js .story[data-active="0"] [data-step="0"], .js .story[data-active="1"] [data-step="1"], .js .story[data-active="2"] [data-step="2"], .js .story[data-active="3"] [data-step="3"], .js .story[data-active="4"] [data-step="4"] { border-left-color: var(--blue); }
+.js .story-step.is-on h3, .js .story[data-active="0"] [data-step="0"] h3, .js .story[data-active="1"] [data-step="1"] h3, .js .story[data-active="2"] [data-step="2"] h3, .js .story[data-active="3"] [data-step="3"] h3, .js .story[data-active="4"] [data-step="4"] h3 { color: var(--fg); }
+.js .story[data-active="0"] [data-step="0"] p, .js .story[data-active="1"] [data-step="1"] p, .js .story[data-active="2"] [data-step="2"] p, .js .story[data-active="3"] [data-step="3"] p, .js .story[data-active="4"] [data-step="4"] p { color: var(--fg-2); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .story-panel { transition: opacity var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); transform: translate3d(0, 10px, 0); }
+  .js .story[data-active] .story-panel { transition-property: opacity, transform, visibility; }
+  .js .story[data-active="0"] [data-panel="0"], .js .story[data-active="1"] [data-panel="1"], .js .story[data-active="2"] [data-panel="2"], .js .story[data-active="3"] [data-panel="3"], .js .story[data-active="4"] [data-panel="4"] { transform: none; transition-delay: 0s; }
+  .js .story-step, .js .story-step h3, .js .story-step p { transition: color var(--dur-3) var(--ease-out), border-color var(--dur-3) var(--ease-out); }
+}
+/* Without JS every step reads at full strength and the stage shows the first panel only. */
+html:not(.js) .story-panel:not([data-panel="0"]) { display: none; }
+.story-panel > .chip { align-self: flex-start; }
+
+/* Hero stage: already in view at load, so it only settles from a slight tilt (never hidden). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .js .stage-3d.is-hero > .stage-plane { animation-name: m-tilt-hero; animation-range: cover 0% cover 40%; }
+    @keyframes m-tilt-hero { from { transform: rotateX(9deg) scale(.97); } to { transform: none; } }
+  }
+}
