@@ -63,3 +63,19 @@
 /* ---------- Closing CTA (the page's paper section) ---------- */
 .close-cta { display: grid; gap: var(--sp-6); align-items: end; }
 @media (min-width: 900px) { .close-cta { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } .close-cta .btn-row { justify-content: flex-end; } }
+
+/* ---------- Product landing pages ---------- */
+.crumbs { display: flex; flex-wrap: wrap; gap: var(--sp-2); font-size: var(--fs-0); color: var(--fg-3); }
+.crumbs a { color: var(--fg-3); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); text-decoration: underline; }
+.crumbs [aria-current] { color: var(--fg-2); }
+.prod-hero .hero2-copy { max-width: 900px; }
+.prod-hero .h-1 { font-size: var(--fs-8); }
+.row-item h3 .chip { margin-left: var(--sp-2); vertical-align: middle; }
+.on-paper .chip-soon { color: #5E584B; border-color: rgba(30, 30, 28, .4); }
+.on-paper .row-item p, .on-paper .body-lg { color: var(--on-sand-2); }
+
+/* Rows inside a split column are narrow: stack title over body, keep the index in a gutter. */
+.split .row-item { grid-template-columns: 40px minmax(0, 1fr); gap: var(--sp-2) var(--sp-4); align-items: start; }
+.split .row-item .idx { grid-row: 1 / span 2; padding-top: 6px; }
+.split .row-item h3, .split .row-item p { grid-column: 2; }
