@@ -71,3 +71,68 @@ html:not(.js) .story-panel:not([data-panel="0"]) { display: none; }
     @keyframes m-tilt-hero { from { transform: rotateX(9deg) scale(.97); } to { transform: none; } }
   }
 }
+
+/* ======================= Cinematic layer =======================
+ * Everything below is decoration over complete content: gated by .js and no-preference, transform/clip/colour only. */
+
+/* Scroll progress: a hairline under the header that fills as the page is read. */
+.site-header { position: relative; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .js .site-header::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 100%; height: 2px; background: var(--blue); transform-origin: 0 50%; animation: m-progress linear both; animation-timeline: scroll(root); }
+    @keyframes m-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  }
+
+  /* Headline words rise out of a mask, one after another. */
+  .js .w { display: inline-block; overflow: hidden; vertical-align: top; padding: .08em .1em .14em; margin: -.08em -.1em -.14em; }
+  .js .w > span { display: inline-block; animation: m-word var(--dur-4) var(--ease-out) both; animation-delay: calc(var(--w, 0) * 70ms + 140ms); }
+  @keyframes m-word { from { transform: translate3d(0, 108%, 0); } to { transform: none; } }
+
+  /* Hero floor: a hairline plane in perspective under the product frame. */
+  .hero-floor { animation: m-fade var(--dur-4) var(--ease-out) 600ms both; }
+
+  /* Floating fragments: depth layers around the hero frame. */
+  .js .float { animation: m-rise var(--dur-4) var(--ease-out) both; animation-delay: calc(900ms + var(--i, 0) * 120ms); }
+
+  /* Manifesto: each word lights up as the line scrolls through. */
+  @supports (animation-timeline: view()) {
+    .js .manifesto-text.is-lit .lit-w { color: #8F8A7C; animation: m-lit linear both; animation-timeline: view(); animation-range: entry calc(8% + var(--i) * 3.4%) entry calc(30% + var(--i) * 3.4%); }
+    @keyframes m-lit { from { color: #8F8A7C; } to { color: var(--sand); } }
+
+    /* Paper section opens like a curtain: inset and rounded at first, full-bleed once in view. */
+    .js .on-paper { animation: m-paper linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+    @keyframes m-paper { from { clip-path: inset(0 var(--gutter) 0 var(--gutter) round 28px); } to { clip-path: inset(0 0 0 0 round 0); } }
+
+    /* Floating fragments drift at different depths. */
+    .js .float[data-depth="1"] { --parallax-max: 18px; }
+    .js .float[data-depth="2"] { --parallax-max: 44px; }
+    .js .float[data-depth="3"] { --parallax-max: 72px; }
+  }
+
+  /* Story panels: rows slide in, bars grow, when their step becomes active. */
+  .js .frag-bar i { transform: scaleX(0); transform-origin: 0 50%; transition: transform var(--dur-4) var(--ease-out); }
+  .js .story[data-active="0"] [data-panel="0"] .frag-bar i, .js .story[data-active="1"] [data-panel="1"] .frag-bar i, .js .story[data-active="2"] [data-panel="2"] .frag-bar i, .js .story[data-active="3"] [data-panel="3"] .frag-bar i { transform: none; }
+  .js .frag-bar:nth-child(2) i { transition-delay: 80ms; } .js .frag-bar:nth-child(3) i { transition-delay: 160ms; } .js .frag-bar:nth-child(4) i { transition-delay: 240ms; }
+  .js .story[data-active="0"] [data-panel="0"] .frag-row, .js .story[data-active="1"] [data-panel="1"] .frag-row { animation: m-rise var(--dur-3) var(--ease-out) both; }
+  .js .story[data-active] .frag-row:nth-child(2) { animation-delay: 90ms; } .js .story[data-active] .frag-row:nth-child(3) { animation-delay: 180ms; }
+}
+
+/* Static (no-motion / no-JS) look of the same elements. */
+.hero-floor { position: absolute; left: -10%; right: -10%; bottom: 0; height: min(52vw, 520px); pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(90deg, rgba(216, 203, 179, .1) 0 1px, transparent 1px 88px), repeating-linear-gradient(0deg, rgba(216, 203, 179, .1) 0 1px, transparent 1px 88px);
+  transform: perspective(520px) rotateX(64deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 85%); mask-image: linear-gradient(to top, #000 0%, transparent 85%); }
+.hero2 > .wrap { position: relative; z-index: 1; }
+.float { position: absolute; display: none; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--hairline-strong); border-radius: 12px; background: var(--surface-2); box-shadow: var(--shadow-float); font-size: var(--fs-1); color: var(--fg); white-space: nowrap; z-index: 3; pointer-events: none; }
+.float small { display: block; font-size: 11.5px; color: var(--fg-3); }
+.float .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); flex: none; }
+.float .dot-warn { background: var(--warn); }
+.float .dot-blue { background: var(--blue); }
+@media (min-width: 1100px) { .float { display: flex; } .hero2-stage { position: relative; } }
+.float-a { left: -28px; top: 18%; }
+.float-b { right: -32px; top: 40%; }
+.float-c { left: 7%; bottom: 28px; }
+
+.manifesto { padding: var(--sp-9) 0; }
+.manifesto-text { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-7); line-height: 1.08; letter-spacing: -.04em; color: var(--sand); max-width: 17em; text-wrap: balance; }
+.manifesto-text .serif { color: var(--accent-text); }

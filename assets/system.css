@@ -58,7 +58,7 @@
 
 /* ---------- Header: sticky, solid, hairline. Active page is an accent rule, not a box. ---------- */
 .header-wrap { position: sticky; top: 0; z-index: 40; }
-.site-header { background: rgba(30, 30, 28, .96); border-bottom: 1px solid var(--hairline); }
+.site-header { background: var(--bg); border-bottom: 1px solid var(--hairline); }
 .header-inner { height: var(--header-h); }
 .nav-btn, .nav-link { font-weight: 500; font-size: var(--fs-1); color: var(--fg-2); background: transparent; box-shadow: none; transition: color var(--dur-1) var(--ease-out); position: relative; }
 .nav-btn:hover, .nav-link:hover { background: transparent; color: var(--fg); }
